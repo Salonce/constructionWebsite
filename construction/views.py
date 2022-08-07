@@ -9,7 +9,7 @@ def index(request):
   #
   total_value = 0
   for x in myitems:
-    total_value = total_value + x['price']
+    total_value = total_value + x['amount']*x['price']
   #
 
   template = loader.get_template('index.html')
@@ -24,9 +24,10 @@ def add(request):
   return HttpResponse(template.render({}, request))
 
 def addrecord(request):
-  x = request.POST['name']
-  y = request.POST['price']
-  item = Inventory(name=x, price=y)
+  name = request.POST['name']
+  price = request.POST['price']
+  amount = request.POST['amount']
+  item = Inventory(name=name, price=price, amount=amount)
   item.save()
   return HttpResponseRedirect(reverse('index'))
 
