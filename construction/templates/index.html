@@ -1,6 +1,18 @@
+
+
+{% load static %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+
 <h1>Construction</h1>
 
-<table border="1">
+<table id="basicTable">
+<tr>
+<td>ID</td>
+<td>name</td>
+<td>price</td>
+<td>amount</td>
 {% for x in myitems %}
 <tr>
 <td>{{ x.id }}</td>
