@@ -5,29 +5,33 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 </head>
 
+<div id="tableAndFlex">
+
 <h1>Construction</h1>
 
 <table id="basicTable">
 <tr>
-<td>ID</td>
-<td>name</td>
-<td>price</td>
-<td>amount</td>
-{% for x in myitems %}
+<td id="id">ID</td>
+<td id="name">name</td>
+<td id="amount">amount</td>
+<td id="costPerUnit"> cost/unit</td>
+<td id="totalCost">all units cost</td>
+<td>del</td>
+
+{% for x in full_list %}
 <tr>
-<td>{{ x.id }}</td>
-<td>{{ x.name }}</td>
-<td>{{ x.price }}</td>
-<td>{{ x.amount }}</td>
+<td><a href="update/{{ x.0.id }}">{{ x.0.id }}</a></td>
+<td>{{ x.0.name }}</td>
+<td>{{ x.0.amount }}</td>
+<td>{{ x.0.price }}</td>
+<td>{{ x.1 }}</td>
+
 <td><a href="delete/{{ x.id }}">delete</a></td>
 </tr>
 {% endfor %}
 </table>
 
-<p>total value: {{ total_value }}</p>
+<p id="totalValue">total value: {{ total_value }}</p>
+<p id="addItem"><a href="add/">Add item</a></p>
 
-
-
-<p>
-<a href="add/">Add item</a>
-</p>
+</div>
