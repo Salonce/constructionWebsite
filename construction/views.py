@@ -1,7 +1,7 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse
-from .models import Inventory
+from .models import Inventory, DefaultPrices
 
 def index(request):
   myitems = Inventory.objects.all().values()
@@ -56,3 +56,43 @@ def updaterecord(request, id):
   item.amount = amount
   item.save()
   return HttpResponseRedirect(reverse('index'))
+
+def defaultvalues(request):
+  items = DefaultPrices.objects.all().values()
+  template = loader.get_template('defaultValues.html')
+  context = {
+    'items': items
+  }
+  return HttpResponse(template.render(context, request))
+
+def adddefaultvaluepage(request):
+  template = loader.get_template('addDefaultValue.html')
+  return HttpResponse(template.render({}, request))
+
+def adddefaultvalue(request):
+  name = request.POST['name']
+  price = request.POST['price']
+  hundred = request.POST['hundred']
+  hundredfifty = request.POST['hundredfifty']
+  twohundred = request.POST['twohundred']
+  item = DefaultPrices(name=name, price=price, hundred=hundred, hundredfifty=hundredfifty, twohundred=twohundred)
+  item.save()
+  return HttpResponseRedirect(reverse('defaultvalues'))
+
+def updatedefaultvaluepage(request, id):
+  template = loader.get_template('updateDefaultValue.html')
+  return HttpResponse(template.render({}, request))
+
+def updatedefaultvalue(request, id):
+  name = request.POST['name']
+  price = request.POST['price']
+  hundred = request.POST['hundred']
+  hundredfifty = request.POST['hundredfifty']
+  twohundred = request.POST['twohundred']
+  item = DefaultPrices(name=name, price=price, hundred=hundred, hundredfifty=hundredfifty, twohundred=twohundred)
+  item.save()
+  return HttpResponseRedirect(reverse('defaultvalues'))
+
+
+
+
