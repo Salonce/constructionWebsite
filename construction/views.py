@@ -4,6 +4,10 @@ from django.urls import reverse
 from .models import Inventory, DefaultPrices
 
 def home(request):
+  template = loader.get_template('home.html')
+  return HttpResponse(template.render({}, request))
+
+def constructionBrowser(request):
   myitems = DefaultPrices.objects.all().values()
 
   #
@@ -17,13 +21,19 @@ def home(request):
   """
   #
 
-  template = loader.get_template('home.html')
+  template = loader.get_template('constructionBrowser.html')
   context = {
     'myitems': myitems,
   #  'total_value': total_value,
   #  'full_list': full_list
   }
   return HttpResponse(template.render(context, request))
+
+
+def houseBrowser(request):
+  template = loader.get_template('houseBrowser.html')
+  return HttpResponse(template.render({}, request))
+
 
 def add(request):
   template = loader.get_template('add.html')
@@ -59,9 +69,9 @@ def updaterecord(request, id):
   item.save()
   return HttpResponseRedirect(reverse('index'))
 
-def defaultvalues(request):
+def constructionAdminPage(request):
   items = DefaultPrices.objects.all().values()
-  template = loader.get_template('defaultValues.html')
+  template = loader.get_template('constructionAdminPage.html')
   context = {
     'items': items
   }

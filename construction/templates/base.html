@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>kekW</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/defaultValues.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/homePage.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/topNav.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/houses.css' %}">
+</head>
+
+<body>
+<div class="topnav">
+    <a href="/">Home</a>
+    <a href="/constructionBrowser/">Construction Items</a>
+    <a href="/houseBrowser/">House browser</a>
+    <a href="/adminPage/" id="right">Admin</a>
+</div>
+
+{% block body %}
+{% endblock %}
+</body>
+</html>

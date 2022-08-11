@@ -1,14 +1,14 @@
 {% load static %}
 <head>
     <link rel="stylesheet" type="text/css" href="{% static 'css/homePage.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/topNav.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/default.css' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <div class="topnav">
   <a href="../">Home</a>
-  <a href="../defaultvalues/">Construction Items</a>
-  <a class="active">House Admin Page</a>
+  <a href="../constructionBrowser/">Construction Items</a>
+  <a href="../houseBrowser/">Houses</a>
   <a class="active" id="right">Admin</a>
 </div>
 
@@ -16,5 +16,5 @@
     Welcome to the admin Page
     <br><br>
     <p><a href="houseAdminPage">Modify houses</a></p>
-    <p><a href="defaultvalues/">Modify construction items</a></p>
+    <p><a href="constructionAdminPage/">Modify construction items</a></p>
 </div>

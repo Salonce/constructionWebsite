@@ -1,29 +1,36 @@
 {% load static %}
 <head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/default.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/houses.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/topNav.css' %}">
 </head>
 
-<div id="houseTable">
+<div class="topnav">
+  <a href="../">Home</a>
+  <a href="../constructionBrowser/">Construction Items</a>
+  <a class="active">Houses</a>
+  <a href="../adminPage/" id="right">Admin</a>
+</div>
 
-<h1>Construction</h1>
 
-<table id="house">
+<div id="mainWindowHouses">
+<h1>Houses</h1>
+
+<table id="houseTable">
 <tr>
 <td id="id">ID</td>
 <td id="name">name</td>
-<td id="localization"></td>
-<td id="total_area"></td>
-<td id="price"></td>
-<td id="rooms">name</td>
-<td id="floors"></td>
-<td id="typeOfTransaction"></td>
-<td id="state"></td>
-<td id="additions">name</td>
-<td id="parking_place"></td>
-<td id="heating"></td>
-<td id="description"></td>
-<td>delete</td>
+<td id="localization">localization</td>
+<td id="total_area">total area</td>
+<td id="price">price</td>
+<td id="rooms">rooms</td>
+<td id="floors">floors</td>
+<td id="typeOfTransaction">type</td>
+<td id="state">state</td>
+<td id="additions">additions</td>
+<td id="parking_place">parking place</td>
+<td id="heating">heating</td>
+<td id="description">description</td>
+<td id="delete">delete</td>
 
 {% for house in houses %}
 <tr>

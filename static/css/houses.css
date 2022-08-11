@@ -27,29 +27,19 @@ h1{
     padding-left: 3px
 }
 
-#houseTable td{
-    width: 60px
-}
 
 #houseTable #id{
     width: 50px
 }
 
 #houseTable #name{
-    width: 150px
+    width: 60px
 }
 
 #houseTable #amount{
     width: 60px
 }
 
-#houseTable #costPerUnit{
-    width: 70px
-}
-
-#houseTable #totalCost{
-    width: 100px
-}
 
 #totalValue{
     color: rgb(35, 91, 105);

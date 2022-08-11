@@ -1,18 +1,9 @@
-{% load static %}
-<head>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/homePage.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/topNav.css' %}">
-</head>
+{% extends 'base.html' %}
 
-
-
-<div class="topnav">
-  <a class="active">Home</a>
-  <a href="defaultvalues/">Construction Items</a>
-  <a href="houseAdminPage/">House Admin Page</a>
-  <a href="adminPage/" id="right">Admin</a>
-</div>
+{% block body %}
 
 <div id="mainWindow">
-    Home page
+    <h1> Home Page </h1>
 </div>
+
+{% endblock %}
