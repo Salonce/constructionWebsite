@@ -17,8 +17,8 @@ class House(models.Model):
   localization = models.CharField(max_length=255)
   total_area = models.CharField(max_length=255)
   price = models.FloatField(max_length=255)
-  rooms = models.IntegerField(max_length=255)
-  floors = models.IntegerField(max_length=255)
+  rooms = models.IntegerField()
+  floors = models.IntegerField()
   typeOfTransaction = models.CharField(max_length=255) #renting or purchase
   state = models.CharField(max_length=255) #(finished? to finish)
   additions = models.CharField(max_length=255) #balcony / garden / terrace

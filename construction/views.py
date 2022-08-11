@@ -3,7 +3,7 @@ from django.template import loader
 from django.urls import reverse
 from .models import Inventory, DefaultPrices
 
-def index(request):
+def home(request):
   myitems = DefaultPrices.objects.all().values()
 
   #
@@ -17,7 +17,7 @@ def index(request):
   """
   #
 
-  template = loader.get_template('index.html')
+  template = loader.get_template('home.html')
   context = {
     'myitems': myitems,
   #  'total_value': total_value,
@@ -95,6 +95,9 @@ def updatedefaultvalue(request, id):
   item.save()
   return HttpResponseRedirect(reverse('defaultvalues'))
 
+def adminPage(request):
+  template = loader.get_template("adminPage.html")
+  return HttpResponse(template.render({}, request))
 
 def houseAdminPage(request):
   template = loader.get_template("houseAdminPage.html")
