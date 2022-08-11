@@ -1,13 +1,21 @@
 {% load static %}
 <head>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/defaultvalues.css' %}">
 </head>
+
+
+
+
+
+
+
+
 
 <div id="tableAndFlex">
 
 <h1>Construction</h1>
 
-<table id="basicTable">
+<table id="constructionTable">
 <tr>
 <td id="id">ID</td>
 <td id="name">name</td>
@@ -16,13 +24,13 @@
 <td id="totalCost">all units cost</td>
 <td>del</td>
 
-{% for x in full_list %}
+{% for x in myitems %}
 <tr>
-<td><a href="update/{{ x.0.id }}">{{ x.0.id }}</a></td>
-<td>{{ x.0.name }}</td>
-<td>{{ x.0.amount }}</td>
-<td>{{ x.0.price }}</td>
-<td>{{ x.1 }}</td>
+<td><a href="update/{{ x.id }}">{{ x.id }}</a></td>
+<td>{{ x.name }}</td>
+<td>dd</td>
+<td>{{ x.price }}</td>
+<td>{{ dd}}</td>
 
 <td><a href="delete/{{ x.id }}">delete</a></td>
 </tr>
@@ -32,5 +40,6 @@
 <p id="totalValue">total value: {{ total_value }}</p>
 <p id="addItem"><a href="add/">Add item</a></p>
 <p id="defaultvalues"><a href="defaultvalues/">set default values</a></p>
+<p id="houseAdminPage"><a href="houseAdminPage/">goToHouseAdminPage</a></p>
 
 </div>

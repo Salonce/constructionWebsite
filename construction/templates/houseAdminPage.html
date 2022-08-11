@@ -1,0 +1,48 @@
+{% load static %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/houses.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<div id="mainWindowHouses">
+
+<h1>Houses</h1>
+
+<table id="houseTable">
+<tr>
+<td id="id">ID</td>
+<td id="name">name</td>
+<td id="localization">localization</td>
+<td id="total_area">total area</td>
+<td id="price">price</td>
+<td id="rooms">rooms</td>
+<td id="floors">floors</td>
+<td id="typeOfTransaction">type</td>
+<td id="state">state</td>
+<td id="additions">additions</td>
+<td id="parking_place">parking place</td>
+<td id="heating">heating</td>
+<td id="description">description</td>
+<td id="delete">delete</td>
+
+{% for house in houses %}
+<tr>
+<td><a href="update/{{ house.id }}">{{ house.id }}</a></td>
+<td>{{ house.name }}</td>
+<td>{{ house.localization }}</td>
+<td>{{ house.total_area }}</td>
+<td>{{ house.price }}</td>
+<td>{{ house.rooms }}</td>
+<td>{{ house.floors }}</td>
+<td>{{ house.typeOfTransaction }}</td>
+<td>{{ house.state }}</td>
+<td>{{ house.additions }}</td>
+<td>{{ house.parking_place }}</td>
+<td>{{ house.heating }}</td>
+<td>{{ house.description }}</td>
+<td><a href="delete/{{ house.id }}">delete</a></td>
+</tr>
+{% endfor %}
+</table>
+<p id="addHouse"><a href="houseAdminAddHouse/">Add house</a></p>
+</div>

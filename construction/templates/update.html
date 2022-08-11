@@ -1,12 +1,12 @@
 <h1>Update {{item.name}}</h1>
 
-<form action="updaterecord/{{ item.id }}" method="post">
+<form action="updaterecord/{{item.id}}" method="post">
 {% csrf_token %}
 Price:<br>
-<input name="price">
+<input name="price" value={{item.price}}>
 <br><br>
 Amount:<br>
-<input name="amount">
+<input name="amount" value={{item.amount}}>
 <br><br>
 <input type="submit" value="Submit">
 </form>

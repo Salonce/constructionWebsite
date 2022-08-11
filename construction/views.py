@@ -4,22 +4,24 @@ from django.urls import reverse
 from .models import Inventory, DefaultPrices
 
 def index(request):
-  myitems = Inventory.objects.all().values()
+  myitems = DefaultPrices.objects.all().values()
 
   #
   total_value = 0
   full_list = []
 
+  """
   for x in myitems:
     full_list.append([x, x['amount']*x['price']])
     total_value = total_value + x['amount']*x['price']
+  """
   #
 
   template = loader.get_template('index.html')
   context = {
     'myitems': myitems,
-    'total_value': total_value,
-    'full_list': full_list
+  #  'total_value': total_value,
+  #  'full_list': full_list
   }
   return HttpResponse(template.render(context, request))
 
@@ -41,7 +43,7 @@ def delete(request, id):
   return HttpResponseRedirect(reverse('index'))
 
 def update(request, id):
-  item = Inventory.objects.get(id=id)
+  item = DefaultPrices.objects.get(id=id)
   template = loader.get_template('update.html')
   context = {
     'item': item,
@@ -92,6 +94,15 @@ def updatedefaultvalue(request, id):
   item = DefaultPrices(name=name, price=price, hundred=hundred, hundredfifty=hundredfifty, twohundred=twohundred)
   item.save()
   return HttpResponseRedirect(reverse('defaultvalues'))
+
+
+def houseAdminPage(request):
+  template = loader.get_template("houseAdminPage.html")
+  return HttpResponse(template.render({}, request))
+
+def houseAdminAddHouse(request):
+  return HttpResponseRedirect(reverse('index'))
+
 
 
 

@@ -1,0 +1,47 @@
+{% load static %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/houses.css' %}">
+</head>
+
+<div id="houseTable">
+
+<h1>Construction</h1>
+
+<table id="house">
+<tr>
+<td id="id">ID</td>
+<td id="name">name</td>
+<td id="localization"></td>
+<td id="total_area"></td>
+<td id="price"></td>
+<td id="rooms">name</td>
+<td id="floors"></td>
+<td id="typeOfTransaction"></td>
+<td id="state"></td>
+<td id="additions">name</td>
+<td id="parking_place"></td>
+<td id="heating"></td>
+<td id="description"></td>
+<td>delete</td>
+
+{% for house in houses %}
+<tr>
+<td><a href="update/{{ house.id }}">{{ house.id }}</a></td>
+<td>{{ house.name }}</td>
+<td>{{ house.localization }}</td>
+<td>{{ house.total_area }}</td>
+<td>{{ house.price }}</td>
+<td>{{ house.rooms }}</td>
+<td>{{ house.floors }}</td>
+<td>{{ house.typeOfTransaction }}</td>
+<td>{{ house.state }}</td>
+<td>{{ house.additions }}</td>
+<td>{{ house.parking_place }}</td>
+<td>{{ house.heating }}</td>
+<td>{{ house.description }}</td>
+<td><a href="delete/{{ house.id }}">delete</a></td>
+</tr>
+{% endfor %}
+</table>
+<!-- <p id="addHouse"><a href="addHouse/">Add house</a></p> -->
+</div>

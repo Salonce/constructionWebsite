@@ -12,4 +12,6 @@ urlpatterns = [
   path('defaultvalues/adddefaultvaluepage/', views.adddefaultvaluepage, name='adddefaultvaluepage'),
   path('defaultvalues/adddefaultvaluepage/adddefaultvalue/', views.adddefaultvalue, name='adddefaultvalue'),
   path('defaultvalues/updatedefaultvalue/<int:id>', views.updatedefaultvalue, name='updatedefaultvalue'),
+  path('houseAdminPage/', views.houseAdminPage, name='houseAdminPage'),
+  path('houseAdminAddHouse/', views.houseAdminAddHouse, name='houseAdminAddHouse'),
 ]
