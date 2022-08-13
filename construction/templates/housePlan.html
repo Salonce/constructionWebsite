@@ -4,10 +4,48 @@
 
 {% block body %}
 
-
 <div id="flexWindow">
+<img src="{{housePlan.picture.url}}" alt="house">
 <h1>{{ housePlan.name }}</h1>
 
+<table id="houseTable">
+<tr>
+<th>total area</td>
+<th>price</td>
+<th>rooms</td>
+</tr>
+
+<tr>
+<td>{{ housePlan.total_area }}m2</td>
+<td>{{ housePlan.price }}$</td>
+<td>{{ housePlan.rooms }}</td>
+</tr>
+</table>
+<br>
+<br>
+<table id="houseTable">
+<tr>
+<th>additions</td>
+<th>parking place</td>
+<th>floors</td>
+</tr>
+
+<tr>
+<td>{{ housePlan.floors }}</td>
+<td>{{ housePlan.additions }}</td>
+<td>{{ housePlan.parking_place }}</td>
+</tr>
+</table>
+
+<br>
+<br>
+<br>
+<div id="nameTitle">description</div>
+<div>{{ housePlan.description }}</div>
+
+</div>
+
+<!--
 <div id="nameTitle">total area</div>
 <div>{{ housePlan.total_area }}m2</div>
 <div id="nameTitle">price</div>
@@ -20,23 +58,6 @@
 <div>{{ housePlan.additions }}</div>
 <div id="nameTitle">parking place</div>
 <div>{{ housePlan.parking_place }}</div>
-<div id="nameTitle">description</div>
-<div>{{ housePlan.description }}</div>
-<div id="nameTitle">image</div>
-
-<img src="{{housePlan.picture.url}}" alt="house">
-
-
-
-
-
-
-
-
-<!-- <p id="addHouse"><a href="addHouse/">Add house</a></p> -->
-</div>
-
-
-
+-->
 
 {% endblock %}

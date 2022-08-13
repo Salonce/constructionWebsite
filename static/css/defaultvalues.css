@@ -1,6 +1,37 @@
+#houseTable th{
+    /*
+    background-color: rgb(67, 187, 187);
+    */
+    font-size: 20;
+    padding-left: 3px;
+    width: 200px;
+    height: 30px;
+    text-align: center;
 
-#constructionTable th, td{
-    background-color: rgb(195, 206, 206);
+    margin: 3px;
+    font-size: 24px;
+    color: rgb(0, 88, 47)
+}
+
+#houseTable td{
+    /*
+    background-color: rgb(116, 177, 177);
+    */
+    font-size: 25px;
+    padding-left: 3px;
+    width: 200px;
+    height: 30px;
+    text-align: center
+}
+
+#constructionTable th{
+    background-color: rgb(110, 151, 151);
+    border: 2px solid;
+    padding-left: 3px
+}
+
+#constructionTable td{
+    background-color: rgb(110, 151, 151);
     border: 2px solid;
     padding-left: 3px
 }
