@@ -1,0 +1,102 @@
+#houseTable th, td{
+    background-color: rgb(195, 206, 206);
+    border: 2px solid;
+    width: 1100px;
+    padding-left: 3px
+}
+
+#houseTable #id{
+    width: 50px
+}
+
+#houseTable #name{
+    width: 60px
+}
+
+#houseTable #amount{
+    width: 60px
+}
+
+#totalValue{
+    color: rgb(35, 91, 105);
+    font-size: 25
+}
+
+#addItem a:link, a:visited {
+    border: 2px solid;
+    background-color: #abb7f0;
+    color: rgb(28, 0, 187);
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block
+}
+
+#addItem a:hover {
+    border: 2px solid;
+    background-color: #929fe2;
+    color: rgb(19, 0, 129);
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block
+}
+
+#housePlanArray{
+    background-color: #b8c3fc;
+    display: flex;
+    width: 100%;
+    align-items: left;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+#housePlanBlock{
+    background-color: rgb(172, 231, 207);
+    border: 1px solid rgb(0, 0, 0);
+    padding: 4px;
+    margin: 5px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    width: 200px;
+    height: 300px;
+}
+
+#housePlanBlock:hover{
+    background-color: rgb(121, 189, 166);
+}
+
+#housePlanArray #housePlanBlock #houseName{
+    margin: 1px;
+    font-size: 24px;
+    color: rgb(0, 88, 47);
+}
+
+#housePlanArray #housePlanBlock #houseTotalArea{
+    margin: 1px;
+    font-size: 20px;
+    color: rgb(0, 88, 47);
+}
+
+#housePlanArray #housePlanBlock #housePrice{
+    margin: 1px;
+    font-size: 20px;
+    color: rgb(0, 88, 47);
+}
+
+#housePlanArray #housePlanBlock #houseRooms{
+    margin: 1px;
+    font-size: 20px;
+    color: rgb(0, 88, 47);
+}
+
+#nameTitle{
+    margin: 3px;
+    font-size: 24px;
+    color: rgb(0, 88, 47);
+}
+
+
+

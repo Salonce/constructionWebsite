@@ -3,17 +3,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>kekW</title>
+    <title>{% block title %}based{% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/default.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/defaultValues.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/houses.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/housePlans.css' %}">
 </head>
 
 <body>
 <div class="topnav">
     <a href="/">Home</a>
     <a href="/inventoryBrowser/">Inventory</a>
-    <a href="/houseBrowser/">House plans</a>
+    <a href="/housePlanBrowser/">House plans</a>
 </div>
 
 {% block body %}

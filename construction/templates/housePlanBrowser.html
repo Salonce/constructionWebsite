@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% block title %}House plans{% endblock %}
 {% block body %}
 
 
@@ -32,5 +32,19 @@
 </table>
 <!-- <p id="addHouse"><a href="addHouse/">Add house</a></p> -->
 </div>
+
+
+<div id="housePlanArray">
+    {% for house in housePlans %}
+        <a href="{{house.id}}" id="housePlanBlock">
+            <div id="houseName">{{ house.name }}</div>
+            <div id="houseTotalArea">{{ house.total_area }}m2</div>
+            <div id="housePrice">{{ house.price }}$</div>
+            <div id="houseRooms">{{ house.rooms }} rooms</div>
+        </a>
+    {% endfor %}
+</div>
+
+
 
 {% endblock %}

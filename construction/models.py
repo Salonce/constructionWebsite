@@ -10,8 +10,8 @@ class Inventory(models.Model):
 
 class HousePlan(models.Model):
   name = models.CharField(max_length=255)
-  total_area = models.CharField(max_length=255)
   price = models.FloatField(max_length=255)
+  total_area = models.FloatField(default=100.0)
   rooms = models.IntegerField()
   floors = models.IntegerField()
   additions = models.CharField(max_length=255) #balcony / garden / terrace

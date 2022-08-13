@@ -28,7 +28,7 @@ def inventoryBrowser(request):
   return HttpResponse(template.render(context, request))
 
 
-def houseBrowser(request):
+def housePlanBrowser(request):
   housePlans = HousePlan.objects.all().values()
   context = {
     'housePlans': housePlans
@@ -37,6 +37,12 @@ def houseBrowser(request):
   template = loader.get_template('housePlanBrowser.html')
   return HttpResponse(template.render(context, request))
 
-
+def housePlan(request, id):
+  housePlan = HousePlan.objects.get(id=id)
+  context = {
+    'housePlan': housePlan
+  }
+  template = loader.get_template('housePlan.html')
+  return HttpResponse(template.render(context, request))
 
 

@@ -11,5 +11,6 @@ admin.site.register(Inventory, InventoryAdmin)
 
 
 class HousePlanAdmin(admin.ModelAdmin):
+    list_display = ['name', 'total_area', 'rooms']
     pass
 admin.site.register(HousePlan, HousePlanAdmin)

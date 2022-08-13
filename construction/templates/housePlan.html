@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ housePlan.name }}{% endblock %}
+
+{% block body %}
+
+
+<div id="flexWindow">
+<h1>{{ housePlan.name }}</h1>
+
+<div id="nameTitle">total area</div>
+<div>{{ housePlan.total_area }}m2</div>
+<div id="nameTitle">price</div>
+<div>{{ housePlan.price }}$</div>
+<div id="nameTitle">rooms</div>
+<div>{{ housePlan.rooms }}</div>
+<div id="nameTitle">floors</div>
+<div>{{ housePlan.floors }}</div>
+<div id="nameTitle">additions</div>
+<div>{{ housePlan.additions }}</div>
+<div id="nameTitle">parking place</div>
+<div>{{ housePlan.parking_place }}</div>
+<div id="nameTitle">description</div>
+<div>{{ housePlan.description }}</div>
+
+
+
+
+
+
+
+
+<!-- <p id="addHouse"><a href="addHouse/">Add house</a></p> -->
+</div>
+
+
+
+
+{% endblock %}
