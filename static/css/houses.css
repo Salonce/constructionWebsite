@@ -1,8 +1,3 @@
-body, html{
-  margin:0;
-  padding:0;
-}
-
 #mainWindowHouses{
     width: 100%;
     background-color: aliceblue;
@@ -11,13 +6,6 @@ body, html{
     display: flex;
     flex-direction: column;
     align-items: center
-}
-
-h1{
-    text-align: center;
-    width: 300px;
-    color: rgb(12, 66, 92);
-    font-size: 35
 }
 
 #houseTable th, td{

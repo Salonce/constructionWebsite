@@ -4,26 +4,21 @@
 
 <div id="tableAndFlex">
 
-<h1>Construction</h1>
+<h1>Inventory</h1>
 
 <table id="constructionTable">
 <tr>
 <td id="id">ID</td>
 <td id="name">name</td>
+<td id="price">price</td>
 <td id="amount">amount</td>
-<td id="costPerUnit"> cost/unit</td>
-<td id="totalCost">all units cost</td>
-<td>del</td>
 
 {% for x in myitems %}
 <tr>
-<td><a href="update/{{ x.id }}">{{ x.id }}</a></td>
+<td>{{ x.id }}</td>
 <td>{{ x.name }}</td>
-<td>dd</td>
 <td>{{ x.price }}</td>
-<td>{{ dd}}</td>
-
-<td><a href="delete/{{ x.id }}">delete</a></td>
+<td>{{ x.amount }}</td>
 </tr>
 {% endfor %}
 </table>
