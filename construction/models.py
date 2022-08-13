@@ -17,7 +17,7 @@ class HousePlan(models.Model):
   additions = models.CharField(max_length=255) #balcony / garden / terrace
   parking_place = models.CharField(max_length=255) #balcony / garden / terrace
   description = models.CharField(max_length=1000)
-
+  picture = models.ImageField(null=True, blank=True, upload_to='', default='default.jpg')
   #def __str__(self):
   #  return "%s" % (self.name)
 
