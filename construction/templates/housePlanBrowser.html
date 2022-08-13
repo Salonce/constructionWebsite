@@ -3,12 +3,11 @@
 {% block body %}
 
 
-<div id="mainWindowHouses">
+<div id="flexWindow">
 <h1>House plans</h1>
 
 <table id="houseTable">
 <tr>
-<td id="id">ID</td>
 <td id="name">name</td>
 <td id="total_area">total area</td>
 <td id="price">price</td>
@@ -20,7 +19,6 @@
 
 {% for house in housePlans %}
 <tr>
-<td>{{ house.id }}</td>
 <td>{{ house.name }}</td>
 <td>{{ house.total_area }}</td>
 <td>{{ house.price }}</td>

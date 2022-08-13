@@ -4,9 +4,12 @@ from .models import HousePlan
 
 
 # Register your models here.
-@admin.register(Inventory)
-class PersonAdmin(admin.ModelAdmin):
+class InventoryAdmin(admin.ModelAdmin):
+    list_display = ['name', 'amount', 'price']
     pass
-@admin.register(HousePlan)
-class PersonAdmin(admin.ModelAdmin):
+admin.site.register(Inventory, InventoryAdmin)
+
+
+class HousePlanAdmin(admin.ModelAdmin):
     pass
+admin.site.register(HousePlan, HousePlanAdmin)

@@ -5,6 +5,9 @@ class Inventory(models.Model):
   price = models.FloatField(max_length=255)
   amount = models.IntegerField(default=0)
 
+  #def __str__(self):
+  #  return "%s (price: %s, amount: %s)" % (self.name, self.price, self.amount)
+
 class HousePlan(models.Model):
   name = models.CharField(max_length=255)
   total_area = models.CharField(max_length=255)
@@ -15,6 +18,8 @@ class HousePlan(models.Model):
   parking_place = models.CharField(max_length=255) #balcony / garden / terrace
   description = models.CharField(max_length=1000)
 
+  #def __str__(self):
+  #  return "%s" % (self.name)
 
 #localization = models.CharField(max_length=255)
 #typeOfTransaction = models.CharField(max_length=255) #renting or purchase
