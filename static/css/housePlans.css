@@ -3,18 +3,6 @@ img{
     width: 300px
 }
 
-#houseTable #id{
-    width: 50px
-}
-
-#houseTable #name{
-    width: 60px
-}
-
-#houseTable #amount{
-    width: 60px
-}
-
 #totalValue{
     color: rgb(35, 91, 105);
     font-size: 25
@@ -95,6 +83,16 @@ img{
     color: rgb(0, 88, 47);
 }
 
+#descriptionTitle{
+    font-size: 36px;
+    color: rgb(0, 88, 47);
+    
+}
+
+#description{
+    margin-top: 12px;
+    font-size: 25px;
+}
 
 
 

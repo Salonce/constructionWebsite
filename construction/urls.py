@@ -6,6 +6,7 @@ urlpatterns = [
   path('inventoryBrowser/', views.inventoryBrowser, name='inventoryBrowser'),
   path('housePlanBrowser/', views.housePlanBrowser, name='housePlanBrowser'),
   path('housePlanBrowser/<int:id>/', views.housePlan, name='housePlan'),
+  path('contact/', views.contact, name='contact'),
   #path('housePlanBrowser/<int:id>/media/<int:id>', views.housePlan, name='housePlan'),
 ]
 

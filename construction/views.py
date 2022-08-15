@@ -2,6 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse
 from .models import Inventory, HousePlan
+from .forms import ContactForm, SnippetForm
 
 def home(request):
   template = loader.get_template('home.html')
@@ -43,6 +44,22 @@ def housePlan(request, id):
     'housePlan': housePlan
   }
   template = loader.get_template('housePlan.html')
+  return HttpResponse(template.render(context, request))
+
+def contact(request):
+  if request.method == 'POST':
+    form = SnippetForm(request.POST)
+    if form.is_valid():
+      name = form.cleaned_data['name']
+
+      print(name)
+      form.save()
+
+  form = SnippetForm()
+  template = loader.get_template('form.html')
+  context = {
+    'form': form
+  }
   return HttpResponse(template.render(context, request))
 
 
