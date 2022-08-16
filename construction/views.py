@@ -1,8 +1,11 @@
 from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render
 from django.template import loader
 from django.urls import reverse
 from .models import Inventory, HousePlan
-from .forms import ContactForm, SnippetForm
+from .forms import ContactForm, SnippetForm, UserCreatorForm
+
+
 
 def home(request):
   template = loader.get_template('home.html')
@@ -63,3 +66,20 @@ def contact(request):
   return HttpResponse(template.render(context, request))
 
 
+def register(request):
+  form = UserCreatorForm()
+
+  if request.method == 'POST':
+    form = UserCreatorForm(request.POST)
+    if form.is_valid():
+      #name = form.cleaned_data['name']
+      form.save()
+    else:
+      return render(request, 'register.html', context={'form': form})
+
+
+  template = loader.get_template('register.html')
+  context = {
+    'form': form
+  }
+  return HttpResponse(template.render(context, request))

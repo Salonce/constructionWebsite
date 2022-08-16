@@ -18,3 +18,5 @@ class SnippetAdmin(admin.ModelAdmin):
     list_display = ['name', 'body']
     pass
 admin.site.register(Snippet, SnippetAdmin)
+
+
