@@ -14,11 +14,16 @@
     <a href="/">Home</a>
     <a href="/inventoryBrowser/">Inventory</a>
     <a href="/housePlanBrowser/">House plans</a>
+    {% if request.user.is_authenticated %}
+    <a href="/userInventory/">Your inventory</a>
+    {% endif %}
     <a href="/admin/" class="right">Admin</a>
+    {% if not request.user.is_authenticated %}
     <a href="/register/" class="right">Register</a>
     <a href="/login/" class="right">Login</a>
-    <span id="logout" class="right"><a href="{% url 'logoutPage' %}">Logout</a> </span>
+    {% endif %}
     {% if request.user.is_authenticated %}
+    <span id="logout" class="right"><a href="{% url 'logoutPage' %}">Logout</a> </span>
     <div id="hello-msg" class="right">Hello, {{request.user}}</div>
     {% endif %}
 </div>
