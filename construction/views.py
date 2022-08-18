@@ -4,9 +4,10 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.template import loader
 from django.urls import reverse
-from .models import Inventory, HousePlan
+from .models import Inventory, HousePlan, UserItem
 from .forms import ContactForm, SnippetForm, UserCreatorForm
 from .decorators import authGoHome, onlyAuthPermitted, allowOnlySpecificRoles
+from django.contrib.auth.models import User
 
 
 def home(request):
@@ -14,10 +15,8 @@ def home(request):
   return HttpResponse(template.render({}, request))
 
 
-@allowOnlySpecificRoles(allowed_roles=['customer'])
 def inventoryBrowser(request):
   myitems = Inventory.objects.all().values()
-
   #
   total_value = 0
   full_list = []
@@ -118,23 +117,17 @@ def logoutPage(request):
 
 
 @onlyAuthPermitted
+@allowOnlySpecificRoles(allowed_roles=['customer'])
 def userInventory(request):
-  myitems = Inventory.objects.all().values()
+  #adfosjfa = request.user.seller.
+  items = UserItem.objects.filter(user=request.user)
 
-  #
-  total_value = 0
-  full_list = []
 
-  for x in myitems:
-    #full_list.append([x, x['amount']*x['price']])
-    total_value = total_value + x['amount']*x['price']
-  #
+  print('ORDERS:', items)
 
   template = loader.get_template('userInventory.html')
   context = {
-     'myitems': myitems,
-     'total_value': total_value,
-     'full_list': full_list
+     'items': items,
   }
   return HttpResponse(template.render(context, request))
 

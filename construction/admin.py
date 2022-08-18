@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Inventory, HousePlan, Snippet
+from .models import Inventory, HousePlan, Snippet, UserItem, Seller
+
 
 # Register your models here.
 class InventoryAdmin(admin.ModelAdmin):
@@ -20,3 +21,13 @@ class SnippetAdmin(admin.ModelAdmin):
 admin.site.register(Snippet, SnippetAdmin)
 
 
+class UserItemAdmin(admin.ModelAdmin):
+    list_display = ['name', 'price', 'amount']
+    pass
+admin.site.register(UserItem, UserItemAdmin)
+
+
+class SellerAdmin(admin.ModelAdmin):
+    list_display = ['item', 'user']
+    pass
+admin.site.register(Seller, SellerAdmin)

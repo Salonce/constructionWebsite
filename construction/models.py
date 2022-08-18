@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from multiselectfield import MultiSelectField
 
@@ -29,6 +30,17 @@ class Snippet(models.Model):
   body = models.TextField()
   def __str__(self):
     return "%s" % (self.name)
+
+class UserItem(models.Model):
+  name = models.CharField(max_length=255)
+  price = models.FloatField(max_length=255)
+  amount = models.IntegerField(default=0)
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
+class Seller(models.Model):
+  item = models.CharField(max_length=255)
+  user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
 
 #localization = models.CharField(max_length=255)
 #typeOfTransaction = models.CharField(max_length=255) #renting or purchase

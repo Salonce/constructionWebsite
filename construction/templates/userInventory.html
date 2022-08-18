@@ -12,7 +12,7 @@
 <td id="price">price</td>
 <td id="amount">amount</td>
 
-{% for x in myitems %}
+{% for x in items %}
 <tr>
 <td>{{ x.name }}</td>
 <td>{{ x.price }}</td>
@@ -21,7 +21,6 @@
 {% endfor %}
 </table>
 
-<p id="totalValue">total value: {{ total_value }}</p>
 </div>
 
 {% endblock %}
