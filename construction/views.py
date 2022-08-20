@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.template import loader
 from django.urls import reverse
-from .models import Inventory, HousePlan, UserItem
+from .models import HousePlan, UserItem, UserFavourite
 from .forms import ContactForm, SnippetForm, UserCreatorForm
 from .decorators import authGoHome, onlyAuthPermitted, allowOnlySpecificRoles
 from django.contrib.auth.models import User
@@ -14,25 +14,6 @@ def home(request):
   template = loader.get_template('home.html')
   return HttpResponse(template.render({}, request))
 
-
-def inventoryBrowser(request):
-  myitems = Inventory.objects.all().values()
-  #
-  total_value = 0
-  full_list = []
-
-  for x in myitems:
-    #full_list.append([x, x['amount']*x['price']])
-    total_value = total_value + x['amount']*x['price']
-  #
-
-  template = loader.get_template('inventoryBrowser.html')
-  context = {
-     'myitems': myitems,
-     'total_value': total_value,
-     'full_list': full_list
-  }
-  return HttpResponse(template.render(context, request))
 
 
 def housePlanBrowser(request):
@@ -118,16 +99,28 @@ def logoutPage(request):
 
 @onlyAuthPermitted
 @allowOnlySpecificRoles(allowed_roles=['customer'])
-def userInventory(request):
-  #adfosjfa = request.user.seller.
-  items = UserItem.objects.filter(user=request.user)
+def userFavourites(request):
+
+  #if request.method == 'get':
+  #  order = request.GET['ordering']
+  #  print(order)
+
+  user_favourites = UserFavourite.objects.filter(user=request.user).order_by("house_plan__total_area")
+  #.values("favourite")
+  #house_plans = []
+  #i = 0
+
+  #for x in house_plans_ids:
+  #  house_plans =
+  #house_plans = [h["favourite"] for h in house_plans]
 
 
-  print('ORDERS:', items)
 
-  template = loader.get_template('userInventory.html')
+  print('ORDERS:', user_favourites)
+
+  template = loader.get_template('userFavourites.html')
   context = {
-     'items': items,
+     'user_favourites': user_favourites,
   }
   return HttpResponse(template.render(context, request))
 

@@ -1,14 +1,7 @@
 from django.contrib import admin
-from .models import Inventory, HousePlan, Snippet, UserItem, Seller
-
+from .models import HousePlan, Snippet, UserItem, UserFavourite
 
 # Register your models here.
-class InventoryAdmin(admin.ModelAdmin):
-    list_display = ['name', 'amount', 'price']
-    pass
-admin.site.register(Inventory, InventoryAdmin)
-
-
 class HousePlanAdmin(admin.ModelAdmin):
     list_display = ['name', 'total_area', 'rooms']
     pass
@@ -27,7 +20,7 @@ class UserItemAdmin(admin.ModelAdmin):
 admin.site.register(UserItem, UserItemAdmin)
 
 
-class SellerAdmin(admin.ModelAdmin):
-    list_display = ['item', 'user']
+class UserFavouriteAdmin(admin.ModelAdmin):
+    list_display = ['user', 'house_plan']
     pass
-admin.site.register(Seller, SellerAdmin)
+admin.site.register(UserFavourite, UserFavouriteAdmin)
