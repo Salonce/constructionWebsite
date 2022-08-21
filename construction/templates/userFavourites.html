@@ -2,28 +2,29 @@
 {% block title %}Inventory{% endblock %}
 {% block body %}
 
+
+
 <div id="flexWindow">
-<h1>Favourite house plans</h1>
+<h1 id="test">Favourite house plans</h1>
 
 </div>
 
 
 
-<form action="" method="get">
-  <!--<label for="ordering">Order by:</label>-->
-  <select name="ordering" id="ordering">
-      <option value="name" selected>name</option>
-      <option value="total-area">total area</option>
-      <option value="price">price</option>
-      <option value="rooms">rooms</option>
+<form action="" method="get" name="orderForm" id="orderForm">
+  {% csrf_token %}
+  <label for="order">Order by:</label>
+  <select name="order" id="order" >   <!--   onchange="orderSend()"   -->
+      <option value="name" {% if order == "name" %} selected="selected" {% endif %}>name</option>
+      <option value="total-area" {% if order == "total_area" %} selected="selected" {% endif %}>total area</option>
+      <option value="price" {% if order == "price" %} selected="selected" {% endif %}>price</option>
+      <option value="rooms" {% if order == "rooms" %} selected="selected" {% endif %}>rooms</option>
   </select>
-  <br><br>
-  <input type="submit" value="Submit">
 </form>
 
 <div id="housePlanArray">
     {% for favourite in user_favourites %}
-        <a href="{{house.id}}" id="housePlanBlock">
+        <a href="/housePlanBrowser/{{favourite.house_plan.id}}" id="housePlanBlock">
             <div id="houseName">{{ favourite.house_plan.name }}</div>
             <div id="houseTotalArea">{{ favourite.house_plan.total_area }}m2</div>
             <div id="housePrice">{{ favourite.house_plan.price }}$</div>
@@ -32,5 +33,16 @@
     {% endfor %}
 </div>
 
+<!--
+<script>
+function switchOrder() {
+document.getElementById("orderForm").submit();
+}
+</script>
+
+-->
+<script>
+var csrftoken = '{{ csrf_token }}';
+</script>
 {% endblock %}
 

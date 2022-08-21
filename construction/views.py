@@ -101,15 +101,16 @@ def logoutPage(request):
 @allowOnlySpecificRoles(allowed_roles=['customer'])
 def userFavourites(request):
 
-  user_favourites = UserFavourite.objects.filter(user=request.user).order_by("house_plan__total_area")
-  a = 10
-  if request.method == 'GET':
-    order = request.GET['ordering']
-    print(order)
-    if order == 'total-area':
-      order = "total_area"
-    user_favourites = UserFavourite.objects.filter(user=request.user).order_by("house_plan__" + order)
+  user_favourites = UserFavourite.objects.filter(user=request.user).order_by("house_plan__price")
 
+  order = 'nothing'
+  if request.method == 'GET':
+    if request.GET:
+      order = request.GET['order']
+      if order == 'total-area':
+        order = "total_area"
+      user_favourites = UserFavourite.objects.filter(user=request.user).all().order_by("house_plan__" + order)
+  print(order)
   #print(request.__dict__.get('environ'))
 
   #.values("favourite")
@@ -119,14 +120,13 @@ def userFavourites(request):
   #for x in house_plans_ids:
   #  house_plans =
   #house_plans = [h["favourite"] for h in house_plans]
-
-
-
   #print('ORDERS:', user_favourites)
 
   template = loader.get_template('userFavourites.html')
   context = {
-     'user_favourites': user_favourites,
+    'user_favourites': user_favourites,
+    'order': order,
   }
+
   return HttpResponse(template.render(context, request))
 
