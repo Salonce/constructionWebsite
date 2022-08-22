@@ -25,7 +25,9 @@
     <a href="/login/" class="right">Login</a>
     {% endif %}
     {% if request.user.is_authenticated %}
-    <span id="logout" class="right"><a href="{% url 'logoutPage' %}">Logout</a> </span>
+    <a href="{% url 'logoutPage' %}" class="right">Logout</a>
+    <a href="/settings/" class="right">Settings</a>
+
     <div id="hello-msg" class="right">Hello, {{request.user}}</div>
     {% endif %}
 </div>

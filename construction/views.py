@@ -4,10 +4,52 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.template import loader
 from django.urls import reverse
-from .models import HousePlan, UserItem, UserFavourite
-from .forms import ContactForm, SnippetForm, UserCreatorForm
+from .models import HousePlan, UserItem, UserFavourite, UserSettings
+from .forms import ContactForm, SnippetForm, UserCreatorForm, UserSettingsForm
 from .decorators import authGoHome, onlyAuthPermitted, allowOnlySpecificRoles
 from django.contrib.auth.models import User
+
+
+@onlyAuthPermitted
+@allowOnlySpecificRoles(allowed_roles=['customer'])
+def userSettings(request):
+  user_settings_instance = UserSettings.objects.get(id=request.user.id)
+  user_data = request.user
+  print (user_data)
+
+  if request.method == "POST":
+    form = UserSettingsForm(request.POST, instance=user_settings_instance)
+    if form.is_valid():
+      #form.instance.user = request.user
+      form.save()
+      return redirect('home')
+    else:
+      return HttpResponse('didnt update')
+
+
+  """
+  form = UserCreatorForm()
+  if request.method == 'POST':
+    form = UserCreatorForm(request.POST)
+    if form.is_valid():
+      user = form.save()
+      username = form.cleaned_data.get('username')
+      group = Group.objects.get(name='customer')
+      user.groups.add(group)
+      return redirect('loginPage')
+    else:
+      return render(request, 'register.html', context={'form': form})
+  """
+
+  form = UserSettingsForm(initial={'address_one' : "dsad"})
+  #print (form)
+  context = {
+    'form': form,
+    'user': user_data
+  }
+
+  template = loader.get_template('userSettings.html')
+  return HttpResponse(template.render(context, request))
 
 
 def home(request):
@@ -15,10 +57,7 @@ def home(request):
   return HttpResponse(template.render({}, request))
 
 
-
 def housePlanBrowser(request):
-  house_plans = HousePlan.objects.all().values()
-
   order = None
   if "order" in request.GET:
     order = request.GET['order']
@@ -35,6 +74,7 @@ def housePlanBrowser(request):
   template = loader.get_template('housePlanBrowser.html')
   return HttpResponse(template.render(context, request))
 
+
 def housePlan(request, id):
   housePlan = HousePlan.objects.get(id=id)
   context = {
@@ -43,12 +83,12 @@ def housePlan(request, id):
   template = loader.get_template('housePlan.html')
   return HttpResponse(template.render(context, request))
 
+
 def contact(request):
   if request.method == 'POST':
     form = SnippetForm(request.POST)
     if form.is_valid():
       name = form.cleaned_data['name']
-
       print(name)
       form.save()
 
@@ -63,7 +103,6 @@ def contact(request):
 @authGoHome
 def register(request):
   form = UserCreatorForm()
-
   if request.method == 'POST':
     form = UserCreatorForm(request.POST)
     if form.is_valid():
@@ -71,12 +110,9 @@ def register(request):
       username = form.cleaned_data.get('username')
       group = Group.objects.get(name='customer')
       user.groups.add(group)
-
       return redirect('loginPage')
-
     else:
       return render(request, 'register.html', context={'form': form})
-
 
   template = loader.get_template('register.html')
   context = {

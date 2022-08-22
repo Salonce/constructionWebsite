@@ -40,6 +40,13 @@ class UserFavourite(models.Model):
   house_plan = models.ForeignKey(HousePlan, on_delete=models.CASCADE, related_name='favourite')
 
 
+class UserSettings(models.Model):
+  address_one = models.CharField(max_length=255)
+  address_two = models.CharField(max_length=255)
+  contact_person_name = models.CharField(max_length=255)
+  telephone_number = models.CharField(max_length=255)
+  user = models.OneToOneField(User, on_delete=models.CASCADE)
+
 
 
 #localization = models.CharField(max_length=255)
