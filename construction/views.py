@@ -17,11 +17,21 @@ def home(request):
 
 
 def housePlanBrowser(request):
-  housePlans = HousePlan.objects.all().values()
-  context = {
-    'housePlans': housePlans
-  }
+  house_plans = HousePlan.objects.all().values()
 
+  order = None
+  if "order" in request.GET:
+    order = request.GET['order']
+    if order == 'total-area':
+      order = "total_area"
+    house_plans = HousePlan.objects.all().order_by(order)
+  else:
+    house_plans = HousePlan.objects.all().order_by("name")
+
+  context = {
+    'house_plans': house_plans,
+    'order': order,
+  }
   template = loader.get_template('housePlanBrowser.html')
   return HttpResponse(template.render(context, request))
 
@@ -101,26 +111,14 @@ def logoutPage(request):
 @allowOnlySpecificRoles(allowed_roles=['customer'])
 def userFavourites(request):
 
-  user_favourites = UserFavourite.objects.filter(user=request.user).order_by("house_plan__price")
-
-  order = 'nothing'
-  if request.method == 'GET':
-    if request.GET:
-      order = request.GET['order']
-      if order == 'total-area':
-        order = "total_area"
-      user_favourites = UserFavourite.objects.filter(user=request.user).all().order_by("house_plan__" + order)
-  print(order)
-  #print(request.__dict__.get('environ'))
-
-  #.values("favourite")
-  #house_plans = []
-  #i = 0
-
-  #for x in house_plans_ids:
-  #  house_plans =
-  #house_plans = [h["favourite"] for h in house_plans]
-  #print('ORDERS:', user_favourites)
+  order =  None
+  if "order" in request.GET:
+    order = request.GET['order']
+    if order == 'total-area':
+      order = "total_area"
+    user_favourites = UserFavourite.objects.filter(user=request.user).all().order_by("house_plan__" + order)
+  else:
+    user_favourites = UserFavourite.objects.filter(user=request.user).order_by("house_plan__name")
 
   template = loader.get_template('userFavourites.html')
   context = {

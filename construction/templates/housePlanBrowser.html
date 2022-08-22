@@ -5,14 +5,21 @@
 
 <div id="flexWindow">
 <h1>House plans</h1>
-
-
-<!-- <p id="addHouse"><a href="addHouse/">Add house</a></p> -->
 </div>
 
+<form action="" method="get" name="orderForm" id="orderForm">
+  {% csrf_token %}
+  <label for="order">Order by:</label>
+  <select name="order" id="order" >   <!--   onchange="orderSend()"   -->
+      <option value="name" {% if order == "name" %} selected="selected" {% endif %}>name</option>
+      <option value="total-area" {% if order == "total_area" %} selected="selected" {% endif %}>total area</option>
+      <option value="price" {% if order == "price" %} selected="selected" {% endif %}>price</option>
+      <option value="rooms" {% if order == "rooms" %} selected="selected" {% endif %}>rooms</option>
+  </select>
+</form>
 
 <div id="housePlanArray">
-    {% for house in housePlans %}
+    {% for house in house_plans %}
         <a href="{{house.id}}" id="housePlanBlock">
             <div id="houseName">{{ house.name }}</div>
             <div id="houseTotalArea">{{ house.total_area }}m2</div>
