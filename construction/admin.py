@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import HousePlan, Snippet, UserItem, UserFavourite, UserSettings
+from .models import HousePlan, Snippet, UserFavourite, UserSettings
 
 # Register your models here.
 class HousePlanAdmin(admin.ModelAdmin):
@@ -12,12 +12,6 @@ class SnippetAdmin(admin.ModelAdmin):
     list_display = ['name', 'body']
     pass
 admin.site.register(Snippet, SnippetAdmin)
-
-
-class UserItemAdmin(admin.ModelAdmin):
-    list_display = ['name', 'price', 'amount']
-    pass
-admin.site.register(UserItem, UserItemAdmin)
 
 
 class UserFavouriteAdmin(admin.ModelAdmin):

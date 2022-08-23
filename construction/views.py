@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.template import loader
 from django.urls import reverse
-from .models import HousePlan, UserItem, UserFavourite, UserSettings
+from .models import HousePlan, UserFavourite, UserSettings
 from .forms import ContactForm, SnippetForm, UserCreatorForm, UserSettingsForm
 from .decorators import authGoHome, onlyAuthPermitted, allowOnlySpecificRoles
 from django.contrib.auth.models import User
@@ -13,48 +13,41 @@ from django.contrib.auth.models import User
 @onlyAuthPermitted
 @allowOnlySpecificRoles(allowed_roles=['customer'])
 def userSettings(request):
-  user_settings_instance = UserSettings.objects.get(id=request.user.id)
-  user_data = request.user
-  print (user_data)
+
+  if UserSettings.objects.filter(user_id=request.user.id).exists():
+    user_settings_instance = UserSettings.objects.get(user_id=request.user.id)
+    initial_values = {
+      'address_one': user_settings_instance.address_one,
+      'address_two': user_settings_instance.address_two,
+      'contact_person_name': user_settings_instance.contact_person_name,
+      'telephone_number': user_settings_instance.telephone_number
+    }
+    form = UserSettingsForm(initial=initial_values)
+    #print("added initial vals")
+  else:
+    form = UserSettingsForm()
+    #print("not added initial vals")
 
   if request.method == "POST":
-    form = UserSettingsForm(request.POST, instance=user_settings_instance)
+    form = UserSettingsForm(request.POST)
     if form.is_valid():
-      #form.instance.user = request.user
+      #print("valid form")
+      obj = form.save(commit=False)
+      obj.user = request.user
+      if UserSettings.objects.filter(user_id=request.user.id).exists():
+        old_id = UserSettings.objects.get(user_id=request.user.id).id
+        obj.id = old_id
       form.save()
       return redirect('home')
     else:
       return HttpResponse('didnt update')
 
-
-  """
-  form = UserCreatorForm()
-  if request.method == 'POST':
-    form = UserCreatorForm(request.POST)
-    if form.is_valid():
-      user = form.save()
-      username = form.cleaned_data.get('username')
-      group = Group.objects.get(name='customer')
-      user.groups.add(group)
-      return redirect('loginPage')
-    else:
-      return render(request, 'register.html', context={'form': form})
-  """
-
-  form = UserSettingsForm(initial={'address_one' : "dsad"})
-  #print (form)
-  context = {
-    'form': form,
-    'user': user_data
-  }
-
-  template = loader.get_template('userSettings.html')
-  return HttpResponse(template.render(context, request))
-
+  return render(request, 'userSettings.html', context={'form': form})
+#I am just making another entry and trying to add user ID
+#it is not updating because i am not updating ID, i am trying to update by giving foreign key insted of primary key
 
 def home(request):
-  template = loader.get_template('home.html')
-  return HttpResponse(template.render({}, request))
+  return render(request, 'home.html', context={})
 
 
 def housePlanBrowser(request):
@@ -67,21 +60,12 @@ def housePlanBrowser(request):
   else:
     house_plans = HousePlan.objects.all().order_by("name")
 
-  context = {
-    'house_plans': house_plans,
-    'order': order,
-  }
-  template = loader.get_template('housePlanBrowser.html')
-  return HttpResponse(template.render(context, request))
+  return render(request, 'housePlanBrowser.html', context={'house_plans': house_plans, 'order': order})
 
 
 def housePlan(request, id):
   housePlan = HousePlan.objects.get(id=id)
-  context = {
-    'housePlan': housePlan
-  }
-  template = loader.get_template('housePlan.html')
-  return HttpResponse(template.render(context, request))
+  return render(request, 'housePlan.html', context={'housePlan': housePlan})
 
 
 def contact(request):
@@ -93,11 +77,7 @@ def contact(request):
       form.save()
 
   form = SnippetForm()
-  template = loader.get_template('form.html')
-  context = {
-    'form': form
-  }
-  return HttpResponse(template.render(context, request))
+  return render(request, 'form.html', context={'form': form})
 
 
 @authGoHome

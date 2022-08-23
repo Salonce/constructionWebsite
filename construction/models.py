@@ -23,13 +23,6 @@ class Snippet(models.Model):
   def __str__(self):
     return "%s" % (self.name)
 
-class UserItem(models.Model):
-  name = models.CharField(max_length=255)
-  price = models.FloatField(max_length=255)
-  amount = models.IntegerField(default=0)
-  user = models.ForeignKey(User, on_delete=models.CASCADE)
-
-
 class UserFavourite(models.Model):
   class Meta:
     unique_together = (('user', 'house_plan'),)
