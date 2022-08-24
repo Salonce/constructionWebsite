@@ -23,15 +23,12 @@ def userSettings(request):
       'telephone_number': user_settings_instance.telephone_number
     }
     form = UserSettingsForm(initial=initial_values)
-    #print("added initial vals")
   else:
     form = UserSettingsForm()
-    #print("not added initial vals")
 
   if request.method == "POST":
     form = UserSettingsForm(request.POST)
     if form.is_valid():
-      #print("valid form")
       obj = form.save(commit=False)
       obj.user = request.user
       if UserSettings.objects.filter(user_id=request.user.id).exists():
@@ -43,8 +40,7 @@ def userSettings(request):
       return HttpResponse('didnt update')
 
   return render(request, 'userSettings.html', context={'form': form})
-#I am just making another entry and trying to add user ID
-#it is not updating because i am not updating ID, i am trying to update by giving foreign key insted of primary key
+
 
 def home(request):
   return render(request, 'home.html', context={})
@@ -128,11 +124,15 @@ def logoutPage(request):
 def userFavourites(request):
 
   order =  None
+
   if "order" in request.GET:
     order = request.GET['order']
     if order == 'total-area':
       order = "total_area"
-    user_favourites = UserFavourite.objects.filter(user=request.user).all().order_by("house_plan__" + order)
+    user_favourites = UserFavourite.objects.filter(user=request.user).order_by("house_plan__" + order)
+    #x = UserFavourite.objects.filter(user=request.user).prefetch_related('house_plan')
+    #for a in x:
+    #  print (a.floors)
   else:
     user_favourites = UserFavourite.objects.filter(user=request.user).order_by("house_plan__name")
 

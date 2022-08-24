@@ -18,13 +18,24 @@
   </select>
 </form>
 
-<div id="housePlanArray">
+<div id="housePlansArray">
     {% for house in house_plans %}
-        <a href="{{house.id}}" id="housePlanBlock">
-            <div id="houseName">{{ house.name }}</div>
-            <div id="houseTotalArea">{{ house.total_area }}m2</div>
-            <div id="housePrice">{{ house.price }}$</div>
-            <div id="houseRooms">{{ house.rooms }} rooms</div>
+
+       <a href="{{house.id}}" id="housePlansBlock">
+            <img src="/images/default.jpg" class="image-in-browser"></img>
+
+            <div id="houseName" >{{ house.name }}</div>
+            <table class="plan-browser-info-table">
+
+                <tr>
+                    <td>{{ house.total_area }}m2</td>
+                    <td>{{ house.price }}$</td>
+                </tr>
+                <tr>
+                    <td>{{ house.rooms }} rooms</td>
+                    <td>{{ house.floors }} floors</td>
+                </tr>
+            </table>
         </a>
     {% endfor %}
 </div>

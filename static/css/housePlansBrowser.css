@@ -1,0 +1,71 @@
+#housePlansArray{
+    background-color: #b8c3fc;
+    display: flex;
+    width: 100%;
+    align-items: left;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+#housePlansBlock{
+    background-color: rgb(172, 231, 207);
+    border: 1px solid rgb(0, 0, 0);
+    padding: 4px;
+    margin: 5px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    width: 400px;
+    height: 400px;
+}
+
+#housePlansBlock:hover{
+    background-color: rgb(121, 189, 166);
+}
+
+#housePlansArray #housePlansBlock img{
+    display: block;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 250px;
+    height: 250px;
+}
+
+#housePlansArray #housePlansBlock #houseName{
+    text-align: center;
+    margin: 1px;
+    font-size: 24px;
+    color: rgb(0, 88, 47);
+}
+
+.plan-browser-info-table{
+    height: 100px;
+    width: 95%;
+}
+.plan-browser-info-table tr{
+    text-align: center;
+    height: 50px;
+    border: 1px solid black;
+}
+.plan-browser-info-table tr td{
+    border: 1px solid black;
+    font-size: 20px;
+    color: rgb(0, 88, 47);
+    text-align: center;
+}
+/*
+
+#housePlansArray #housePlansBlock .house-item{
+    margin: 1px;
+    font-size: 20px;
+    color: rgb(0, 88, 47);
+}
+
+#nameTitle{
+    margin: 3px;
+    font-size: 24px;
+    color: rgb(0, 88, 47);
+}
+*/

@@ -1,12 +1,11 @@
 {% extends 'base.html' %}
-{% block title %}Inventory{% endblock %}
+{% block title %}Favourites{% endblock %}
 {% block body %}
 
 
 
 <div id="flexWindow">
 <h1 id="test">Favourite house plans</h1>
-
 </div>
 
 
@@ -22,18 +21,33 @@
   </select>
 </form>
 
-<div id="housePlanArray">
+<div id="housePlansArray">
     {% for favourite in user_favourites %}
-        <a href="/housePlanBrowser/{{favourite.house_plan.id}}" id="housePlanBlock">
+        <a href="/housePlanBrowser/{{favourite.house_plan.id}}" id="housePlansBlock">
+            <img src="/images/default.jpg" class="image-in-browser"></img>
+
             <div id="houseName">{{ favourite.house_plan.name }}</div>
-            <div id="houseTotalArea">{{ favourite.house_plan.total_area }}m2</div>
-            <div id="housePrice">{{ favourite.house_plan.price }}$</div>
-            <div id="houseRooms">{{ favourite.house_plan.rooms }} rooms</div>
+            <table class="plan-browser-info-table">
+
+                <tr>
+                    <td>{{ favourite.house_plan.total_area }}m2</td>
+                    <td>{{ favourite.house_plan.price }}$</td>
+                </tr>
+                <tr>
+                    <td>{{ favourite.house_plan.rooms }} rooms</td>
+                    <td>{{ favourite.house_plan.floors }} floors</td>
+                </tr>
+            </table>
         </a>
     {% endfor %}
 </div>
 
 <!--
+            <div id="houseTotalArea" class="house-item">{{ favourite.house_plan.total_area }}m2</div>
+            <div id="housePrice" class="house-item">{{ favourite.house_plan.price }}$</div>
+            <div id="houseRooms" class="house-item">{{ favourite.house_plan.rooms }} rooms</div>
+            <div id="houseFloors" class="house-item">{{ favourite.house_plan.floors }} floors</div>
+
 <script>
 function switchOrder() {
 document.getElementById("orderForm").submit();

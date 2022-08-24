@@ -13,10 +13,9 @@ body, html{
     flex-direction: column
 }
 
-
 h1{
     text-align: center;
-    width: 300px;
+    width: 50%;
     color: rgb(12, 66, 92);
     font-size: 35
 }
