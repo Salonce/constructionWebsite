@@ -23,8 +23,8 @@
 
 <div id="housePlansArray">
     {% for favourite in user_favourites %}
-        <a href="/housePlanBrowser/{{favourite.house_plan.id}}" id="housePlansBlock">
-            <img src="/images/default.jpg" class="image-in-browser"></img>
+         <a href="/housePlanBrowser/{{favourite.house_plan.id}}" id="housePlansBlock">
+         <!--   <img src="/images/default.jpg" class="image-in-browser"></img>-->
 
             <div id="houseName">{{ favourite.house_plan.name }}</div>
             <table class="plan-browser-info-table">
