@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import Group
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect
 from django.template import loader
 from django.urls import reverse
@@ -43,7 +43,23 @@ def userSettings(request):
 
 
 def home(request):
+  if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+    some_text = request.GET.get('someText')
+    #print()
+    #print(some_text)
+    #print()
   return render(request, 'home.html', context={})
+
+def loadInfo(request):
+  if request.headers.get('X-Requested-With') == 'XMLHTtpRequest':
+    print("dsadsa")
+    print("dsadsa")
+    print("dsadsa")
+    print("dsadsa")
+    data = {'aaa': 'tree', 'bbb': 'grass', 'ccc': 'house'}
+    return JsonResponse(data)
+  else:
+    return render(request, 'home.html', context={})
 
 
 def housePlanBrowser(request):
