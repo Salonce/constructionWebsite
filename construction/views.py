@@ -51,7 +51,7 @@ def home(request):
   return render(request, 'home.html', context={})
 
 def loadInfo(request):
-  if request.headers.get('X-Requested-With') == 'XMLHTtpRequest':
+  if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
     print("dsadsa")
     print("dsadsa")
     print("dsadsa")

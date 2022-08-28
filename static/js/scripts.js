@@ -13,7 +13,7 @@ $(document).ready(function(){
       $.ajax({
          url: 'loadInfo/',
          headers: {
-            'X-Requested-With': 'XMLHTtpRequest',
+            //'X-Requested-With': 'XMLHttpRequest',
             'Content-Type': 'application/json'
          },
          type: 'get',
