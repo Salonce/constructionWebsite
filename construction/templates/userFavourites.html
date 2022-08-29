@@ -23,7 +23,9 @@
 
 <div id="housePlansArray">
     {% for favourite in user_favourites %}
-         <a href="/housePlanBrowser/{{favourite.house_plan.id}}" id="housePlansBlock">
+    <div class="oneHouseBlock">
+
+         <a href="/housePlanBrowser/{{favourite.house_plan.id}}" class="housePlansBlock">
          <!--   <img src="/images/default.jpg" class="image-in-browser"></img>-->
 
             <div id="houseName">{{ favourite.house_plan.name }}</div>
@@ -39,8 +41,13 @@
                 </tr>
             </table>
         </a>
+        <a href="someLink" class="fav">fav</a>
+
+    </div>
     {% endfor %}
 </div>
+
+<div id="helper">AAA</div>
 
 <!--
             <div id="houseTotalArea" class="house-item">{{ favourite.house_plan.total_area }}m2</div>

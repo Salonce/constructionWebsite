@@ -8,6 +8,39 @@ $(document).on("change", "#order", function (target) {
 });
 
 
+
+//get order value into a variable??
+/*
+$(document).on("change", "#order", function (target) {
+  let order_value = $("#order").val()
+*/
+
+  //$("#helper").text(order_value)
+/*
+  $.ajax({
+         url: '',
+         headers: {
+            //'X-Requested-With': 'XMLHttpRequest',
+            'Content-Type': 'application/json'
+         },
+         type: 'get',
+         data: {
+            someText: order_value
+         },
+         success: function(response) {
+            //$(".btn").text(response.bbb)
+            $("#helper").text("<div>dsadsa</div><div>dsacxvzxcvx</div>")
+            //$("#helper").text(response[0].fields.house_plan)
+         },
+         error: function(response) {
+            //alert("Something didn't work out!!");
+            //$(".btn").text("error")
+         }
+      });
+});
+
+*/
+/*
 $(document).ready(function(){
    $(".btn").click(function(){
       $.ajax({
@@ -22,7 +55,8 @@ $(document).ready(function(){
          },
          success: function(response) {
             //$(".btn").text(response.seconds)
-            $(".btn").text(response.bbb)
+            $(".btn").text(response.tree)
+            console.log(response)
          },
          error: function(response) {
             alert("Something didn't work out!!");
@@ -30,8 +64,20 @@ $(document).ready(function(){
          }
       });
    });
-
 });
+*/
+
+
+/*
+var tag = document.createElement("p");
+var text = document.createTextNode("Tutorix is the best e-learning platform");
+tag.appendChild(text);
+var element = document.getElementById("new");
+element.appendChild(tag);
+*/
+
+
+
 
 /*
 document.getElementById("orderForm").onchange = {

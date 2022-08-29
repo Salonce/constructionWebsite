@@ -7,7 +7,31 @@
     flex-direction: row;
 }
 
-#housePlansBlock{
+
+#housePlansArray .oneHouseBlock{
+    position: relative;
+    width: 400px;
+    height: 500px;
+    margin: 25px;
+}
+
+#housePlansArray .oneHouseBlock a.fav{
+    position: absolute;
+    height: 30px;
+    width: 50px;
+    background-color: rgb(106, 139, 114);
+    right: 10px;
+    top: 10px;
+
+    color: black;
+    text-decoration: none;
+}
+
+#housePlansArray .oneHouseBlock a.fav:hover{
+    background-color: rgb(66, 99, 74);
+}
+
+#housePlansArray .oneHouseBlock .housePlansBlock{
     background-color: rgb(172, 231, 207);
     border: 1px solid rgb(0, 0, 0);
     padding: 4px;
@@ -20,11 +44,11 @@
     height: 400px;
 }
 
-#housePlansBlock:hover{
+#housePlansArray .oneHouseBlock .housePlansBlock:hover{
     background-color: rgb(121, 189, 166);
 }
 
-#housePlansArray #housePlansBlock img{
+#housePlansArray .housePlansBlock img{
     display: block;
     margin-top: 5px;
     margin-left: auto;
@@ -33,7 +57,7 @@
     height: 250px;
 }
 
-#housePlansArray #housePlansBlock #houseName{
+#housePlansArray .housePlansBlock #houseName{
     text-align: center;
     margin: 1px;
     font-size: 24px;

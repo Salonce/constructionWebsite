@@ -7,6 +7,7 @@ from django.urls import reverse
 from .models import HousePlan, UserFavourite, UserSettings
 from .forms import ContactForm, SnippetForm, UserCreatorForm, UserSettingsForm
 from .decorators import authGoHome, onlyAuthPermitted, allowOnlySpecificRoles
+from django.core import serializers
 from django.contrib.auth.models import User
 
 
@@ -52,11 +53,10 @@ def home(request):
 
 def loadInfo(request):
   if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+    print("      ")
     print("dsadsa")
-    print("dsadsa")
-    print("dsadsa")
-    print("dsadsa")
-    data = {'aaa': 'tree', 'bbb': 'grass', 'ccc': 'house'}
+    print("      ")
+    data = {'tree': 'tree', 'grass': 'grass', 'house': 'house'}
     return JsonResponse(data)
   else:
     return render(request, 'home.html', context={})
@@ -139,7 +139,21 @@ def logoutPage(request):
 @allowOnlySpecificRoles(allowed_roles=['customer'])
 def userFavourites(request):
 
-  order =  None
+  order = None
+
+  """
+  if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+    print("dsadsa")
+    if order == 'total-area':
+      order = "total_area"
+      user_favourites = UserFavourite.objects.filter(user=request.user).order_by("house_plan__" + order)
+    else:
+      user_favourites = UserFavourite.objects.filter(user=request.user).order_by("house_plan__name")
+
+    data = serializers.serialize("json", user_favourites)
+    print(data)
+    return HttpResponse(data, content_type="application/json")
+  """
 
   if "order" in request.GET:
     order = request.GET['order']
@@ -147,8 +161,6 @@ def userFavourites(request):
       order = "total_area"
     user_favourites = UserFavourite.objects.filter(user=request.user).order_by("house_plan__" + order)
     #x = UserFavourite.objects.filter(user=request.user).prefetch_related('house_plan')
-    #for a in x:
-    #  print (a.floors)
   else:
     user_favourites = UserFavourite.objects.filter(user=request.user).order_by("house_plan__name")
 
@@ -157,6 +169,10 @@ def userFavourites(request):
     'user_favourites': user_favourites,
     'order': order,
   }
-
   return HttpResponse(template.render(context, request))
+
+
+
+
+
 
