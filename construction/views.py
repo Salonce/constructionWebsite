@@ -4,6 +4,8 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect
 from django.template import loader
 from django.urls import reverse
+from django.views.decorators.csrf import csrf_protect
+
 from .models import HousePlan, UserFavourite, UserSettings
 from .forms import ContactForm, SnippetForm, UserCreatorForm, UserSettingsForm
 from .decorators import authGoHome, onlyAuthPermitted, allowOnlySpecificRoles
@@ -135,11 +137,20 @@ def logoutPage(request):
   return redirect('loginPage')
 
 
+
 @onlyAuthPermitted
 @allowOnlySpecificRoles(allowed_roles=['customer'])
 def userFavourites(request):
 
   order = None
+  #rint(request.type)
+  if request.headers.get('X-Requested-With') == 'XMLHttpRequest' and request.method == 'POST':
+    print("i am inside ajax post request, success")
+    #houseID = request.POST
+    #dataaa = serializers.deserialize(request.data)
+    #print(request)
+    #get house ID variable here
+
 
   """
   if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
@@ -169,6 +180,7 @@ def userFavourites(request):
     'user_favourites': user_favourites,
     'order': order,
   }
+
   return HttpResponse(template.render(context, request))
 
 

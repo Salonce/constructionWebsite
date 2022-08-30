@@ -1,10 +1,39 @@
-
 $(document).on("change", "#order", function (target) {
   //let a = $("#order").val()
   document.getElementById("orderForm").submit()
+});
 
-  //window.alert(a);
-  //console.log(a);
+
+$(document).on("click", ".fav", function (target) {
+
+    let idVariable = target.target.id;
+    console.log("houseplan id: ", target.target.id);
+    console.log("csrftoken: ", csrftoken);
+
+    $.ajax({
+         url: '',
+         headers: {
+            'X-CSRFToken': csrftoken,
+            'Content-Type': 'application/json'
+            //'X-Requested-With': 'XMLHttpRequest',
+         },
+         mode: 'same-origin',
+         type: 'post',
+         data: {
+            'housePlanID': 'czcxz',
+         },
+         success: function(response) {
+            console.log("i am inside post request, success")
+            //$(".btn").text(response.bbb)
+            //$("#helper").text("<div>dsadsa</div><div>dsacxvzxcvx</div>")
+            //$("#helper").text(response[0].fields.house_plan)
+         },
+         error: function(response) {
+            console.log("i am inside post request, failure")
+            //alert("Something didn't work out!!");
+            //$(".btn").text("error")
+         }
+    });
 });
 
 

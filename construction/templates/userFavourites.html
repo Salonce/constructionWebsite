@@ -11,7 +11,7 @@
 
 
 <form action="" method="get" name="orderForm" id="orderForm">
-  {% csrf_token %}
+  <!-- {% csrf_token %} -->
   <label for="order">Order by:</label>
   <select name="order" id="order" >   <!--   onchange="orderSend()"   -->
       <option value="name" {% if order == "name" %} selected="selected" {% endif %}>name</option>
@@ -20,6 +20,8 @@
       <option value="rooms" {% if order == "rooms" %} selected="selected" {% endif %}>rooms</option>
   </select>
 </form>
+
+
 
 <div id="housePlansArray">
     {% for favourite in user_favourites %}
@@ -41,8 +43,7 @@
                 </tr>
             </table>
         </a>
-        <a href="someLink" class="fav">fav</a>
-
+        <a class="fav" id="{{favourite.house_plan.id}}">fav</a>
     </div>
     {% endfor %}
 </div>
