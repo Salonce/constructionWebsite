@@ -1,3 +1,5 @@
+import json
+
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import Group
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
@@ -146,6 +148,12 @@ def userFavourites(request):
   #rint(request.type)
   if request.headers.get('X-Requested-With') == 'XMLHttpRequest' and request.method == 'POST':
     print("i am inside ajax post request, success")
+    print(request.body)
+
+    received_json = json.loads(request.body)
+    data = received_json['housePlanID']
+    print(data)
+
     #houseID = request.POST
     #dataaa = serializers.deserialize(request.data)
     #print(request)

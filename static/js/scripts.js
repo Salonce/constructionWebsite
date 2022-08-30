@@ -19,9 +19,7 @@ $(document).on("click", ".fav", function (target) {
          },
          mode: 'same-origin',
          type: 'post',
-         data: {
-            'housePlanID': 'czcxz',
-         },
+         data: JSON.stringify({ "housePlanID": "czcxz" }),
          success: function(response) {
             console.log("i am inside post request, success")
             //$(".btn").text(response.bbb)
