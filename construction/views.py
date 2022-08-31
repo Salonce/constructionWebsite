@@ -68,9 +68,6 @@ def loadInfo(request):
 
 def housePlanBrowser(request):
 
-
-
-
   if request.headers.get('X-Requested-With') == 'XMLHttpRequest' and request.method == 'POST':
     print("i am inside ajax post request, success")
     print(request.body)
@@ -93,15 +90,30 @@ def housePlanBrowser(request):
     context={'state': state}
     return JsonResponse(context)
 
-  order = None
-  if "order" in request.GET:
-    order = request.GET['order']
-    if order == 'total-area':
-      order = "total_area"
-    house_plans = HousePlan.objects.all().order_by(order)
-  else:
-    house_plans = HousePlan.objects.all().order_by("name")
-  return render(request, 'housePlanBrowser.html', context={'house_plans': house_plans, 'order': order})
+
+  #fetch table with userFavs for this user
+  #get all house_IDs into a list
+  #??for each ID, if it is in the list, add DJANGO IF in HTML template: if the ID of the given HOUSE
+  #is in the list, add 'fav-selected' class
+
+  if request.method == 'GET':
+    userFavs = UserFavourite.objects.all().filter(user=request.user)
+    fav_plans_ids = userFavs.values('house_plan')
+    vals = []
+    for i in fav_plans_ids:
+      vals.append(i['house_plan'])
+    #print(userFavs)
+    print('fav_plans_ids: ', vals)
+
+    order = None
+    if "order" in request.GET:
+      order = request.GET['order']
+      if order == 'total-area':
+        order = "total_area"
+      house_plans = HousePlan.objects.all().order_by(order)
+    else:
+      house_plans = HousePlan.objects.all().order_by("name")
+    return render(request, 'housePlanBrowser.html', context={'fav_plans_ids': vals, 'house_plans': house_plans, 'order': order})
 
 
 def housePlan(request, id):

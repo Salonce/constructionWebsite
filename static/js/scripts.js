@@ -39,24 +39,14 @@ $(document).on("click", ".fav", function (target) {
          success: function(response) {
             console.log("i am inside post request, success")
             if(response.state=="deleted"){
-                console.log(response.state);
                 $(target.target).removeClass("fav-activated");
-                console.log(target);
-                //deactivate class selected
             }
             else if(response.state=="added"){
                 $(target.target).addClass("fav-activated");
-                console.log(response.state)
             }
-                //activate class selected
-            //$(".btn").text(response.bbb)
-            //$("#helper").text("<div>dsadsa</div><div>dsacxvzxcvx</div>")
-            //$("#helper").text(response[0].fields.house_plan)
          },
          error: function(response) {
             console.log("i am inside post request, failure")
-            //alert("Something didn't work out!!");
-            //$(".btn").text("error")
          }
     });
 });

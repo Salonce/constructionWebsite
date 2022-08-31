@@ -35,11 +35,19 @@
                 </tr>
             </table>
         </a>
-        <a class="fav" id="{{house.id}}">fav</a>
+            {% if house.id in fav_plans_ids %}
+            <a class="fav fav-activated" id="{{house.id}}">fav</a>
+            {% else %}
+            <a class="fav" id="{{house.id}}">fav</a>
+            {% endif %}
+
+        <div id="hpids">
+            {% for fav_plan in fav_plans_ids %}
+                {{ fav_plan.house_plan }}
+            {% endfor %}
+        </div>
     </div>
     {% endfor %}
 </div>
-
-
 
 {% endblock %}

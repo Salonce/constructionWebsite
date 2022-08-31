@@ -16,23 +16,35 @@
 }
 
 #housePlansArray .oneHouseBlock a.fav{
+    border: 1px solid rgb(0, 0, 0);
     position: absolute;
+    border-radius: 13px;
     height: 30px;
     width: 50px;
-    background-color: rgb(106, 139, 114);
+    background-color: rgb(255, 27, 27);
     right: 10px;
-    top: 10px;
-
+    top: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: black;
     text-decoration: none;
 }
-#housePlansArray .oneHouseBlock a.fav-activated{
-    background-color: rgb(156, 59, 14);
-}
 
 #housePlansArray .oneHouseBlock a.fav:hover{
-    background-color: rgb(66, 99, 74);
+    color: rgb(153, 153, 153);
+    cursor: pointer;
 }
+
+
+#housePlansArray .oneHouseBlock a.fav-activated{
+    background-color: rgb(66, 167, 53);
+}
+
+#housePlansArray .oneHouseBlock a.active{
+    background-color: rgb(122, 82, 63);
+}
+
 
 #housePlansArray .oneHouseBlock .housePlansBlock{
     background-color: rgb(172, 231, 207);

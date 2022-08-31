@@ -21,8 +21,6 @@
   </select>
 </form>
 
-
-
 <div id="housePlansArray">
     {% for favourite in user_favourites %}
     <div class="oneHouseBlock">
@@ -47,23 +45,5 @@
 
 <div id="helper">AAA</div>
 
-<!--
-            <div id="houseTotalArea" class="house-item">{{ favourite.house_plan.total_area }}m2</div>
-            <div id="housePrice" class="house-item">{{ favourite.house_plan.price }}$</div>
-            <div id="houseRooms" class="house-item">{{ favourite.house_plan.rooms }} rooms</div>
-            <div id="houseFloors" class="house-item">{{ favourite.house_plan.floors }} floors</div>
-
-<script>
-function switchOrder() {
-document.getElementById("orderForm").submit();
-}
-</script>
-
--->
-<!--
-<script>
-var csrftoken = '{{ csrf_token }}';
-</script>
--->
 {% endblock %}
 
