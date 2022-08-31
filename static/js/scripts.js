@@ -3,6 +3,22 @@ $(document).on("change", "#order", function (target) {
   document.getElementById("orderForm").submit()
 });
 
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie != '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+var csrftoken = getCookie('csrftoken');
 
 $(document).on("click", ".fav", function (target) {
 
@@ -19,9 +35,20 @@ $(document).on("click", ".fav", function (target) {
          },
          mode: 'same-origin',
          type: 'post',
-         data: JSON.stringify({ "housePlanID": "czcxz" }),
+         data: JSON.stringify({ "housePlanID": idVariable}),
          success: function(response) {
             console.log("i am inside post request, success")
+            if(response.state=="deleted"){
+                console.log(response.state);
+                $(target.target).removeClass("fav-activated");
+                console.log(target);
+                //deactivate class selected
+            }
+            else if(response.state=="added"){
+                $(target.target).addClass("fav-activated");
+                console.log(response.state)
+            }
+                //activate class selected
             //$(".btn").text(response.bbb)
             //$("#helper").text("<div>dsadsa</div><div>dsacxvzxcvx</div>")
             //$("#helper").text(response[0].fields.house_plan)
