@@ -20,34 +20,44 @@ function getCookie(name) {
 }
 var csrftoken = getCookie('csrftoken');
 
-$(document).on("click", ".fav", function (target) {
+$(document).ready(function(){
+    console.log(top.location.pathname)
+    if (top.location.pathname === '/housePlanBrowser/'){
+            console.log(document);
+            console.log(top)
+            $('h1').text("dsadas");
+        }
 
-    let idVariable = target.target.id;
-    console.log("houseplan id: ", target.target.id);
-    console.log("csrftoken: ", csrftoken);
 
-    $.ajax({
-         url: '',
-         headers: {
-            'X-CSRFToken': csrftoken,
-            'Content-Type': 'application/json'
-            //'X-Requested-With': 'XMLHttpRequest',
-         },
-         mode: 'same-origin',
-         type: 'post',
-         data: JSON.stringify({ "housePlanID": idVariable}),
-         success: function(response) {
-            console.log("i am inside post request, success")
-            if(response.state=="deleted"){
-                $(target.target).removeClass("fav-activated");
-            }
-            else if(response.state=="added"){
-                $(target.target).addClass("fav-activated");
-            }
-         },
-         error: function(response) {
-            console.log("i am inside post request, failure")
-         }
+    $(document).on("click", ".fav", function (target) {
+
+        let idVariable = target.target.id;
+        console.log("houseplan id: ", target.target.id);
+        console.log("csrftoken: ", csrftoken);
+
+        $.ajax({
+             url: '',
+             headers: {
+                'X-CSRFToken': csrftoken,
+                'Content-Type': 'application/json'
+                //'X-Requested-With': 'XMLHttpRequest',
+             },
+             mode: 'same-origin',
+             type: 'post',
+             data: JSON.stringify({ "housePlanID": idVariable}),
+             success: function(response) {
+                console.log("i am inside post request, success")
+                if(response.state=="deleted"){
+                    $(target.target).removeClass("fav-activated");
+                }
+                else if(response.state=="added"){
+                    $(target.target).addClass("fav-activated");
+                }
+             },
+             error: function(response) {
+                console.log("i am inside post request, failure")
+             }
+        });
     });
 });
 
