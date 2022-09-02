@@ -19,6 +19,7 @@ from django.contrib.auth.models import User
 @allowOnlySpecificRoles(allowed_roles=['customer'])
 def userSettings(request):
 
+  #print(request.path)
   if UserSettings.objects.filter(user_id=request.user.id).exists():
     user_settings_instance = UserSettings.objects.get(user_id=request.user.id)
     initial_values = {
@@ -67,43 +68,29 @@ def loadInfo(request):
 
 
 def housePlanBrowser(request):
-
   if request.headers.get('X-Requested-With') == 'XMLHttpRequest' and request.method == 'POST':
-    print("i am inside ajax post request, success")
-    print(request.body)
     state = None
     received_json = json.loads(request.body)
     house_plan_id = received_json['housePlanID']
-    print("house_plan_id:", house_plan_id)
     picked_house_plan = HousePlan.objects.all().get(id=house_plan_id)
     result_record = UserFavourite.objects.all().filter(user=request.user, house_plan=picked_house_plan)
     if result_record:
       result_record.delete()
       state = "deleted"
-      print("deleted object")
     else:
       new_record = UserFavourite(user=request.user, house_plan=picked_house_plan)
       new_record.save()
       state = "added"
-      print("added object")
-    print("result_record:", result_record)
     context={'state': state}
     return JsonResponse(context)
 
-
-  #fetch table with userFavs for this user
-  #get all house_IDs into a list
-  #??for each ID, if it is in the list, add DJANGO IF in HTML template: if the ID of the given HOUSE
-  #is in the list, add 'fav-selected' class
-
   if request.method == 'GET':
+    print(request.path)
     userFavs = UserFavourite.objects.all().filter(user=request.user)
     fav_plans_ids = userFavs.values('house_plan')
     vals = []
     for i in fav_plans_ids:
       vals.append(i['house_plan'])
-    #print(userFavs)
-    print('fav_plans_ids: ', vals)
 
     order = None
     if "order" in request.GET:

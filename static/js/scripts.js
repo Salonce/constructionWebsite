@@ -3,6 +3,8 @@ $(document).on("change", "#order", function (target) {
   document.getElementById("orderForm").submit()
 });
 
+
+
 function getCookie(name) {
     var cookieValue = null;
     if (document.cookie && document.cookie != '') {
@@ -21,11 +23,10 @@ function getCookie(name) {
 var csrftoken = getCookie('csrftoken');
 
 $(document).ready(function(){
-    console.log(top.location.pathname)
+    /* loca = console.log(top.location.pathname) */
     if (top.location.pathname === '/housePlanBrowser/'){
             console.log(document);
             console.log(top)
-            $('h1').text("dsadas");
         }
 
 
