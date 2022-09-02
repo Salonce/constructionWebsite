@@ -1,6 +1,6 @@
-$(document).on("change", "#order", function (target) {
+$(document).on("change", "#sort", function (target) {
   //let a = $("#order").val()
-  document.getElementById("orderForm").submit()
+  document.getElementById("sortForm").submit()
 });
 
 

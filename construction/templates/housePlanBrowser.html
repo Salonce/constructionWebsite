@@ -7,14 +7,13 @@
 <h1>House plans</h1>
 </div>
 
-<form action="" method="get" name="orderForm" id="orderForm">
-  {% csrf_token %}
-  <label for="order">Order by:</label>
-  <select name="order" id="order" >   <!--   onchange="orderSend()"   -->
-      <option value="name" {% if order == "name" %} selected="selected" {% endif %}>name</option>
-      <option value="total-area" {% if order == "total_area" %} selected="selected" {% endif %}>total area</option>
-      <option value="price" {% if order == "price" %} selected="selected" {% endif %}>price</option>
-      <option value="rooms" {% if order == "rooms" %} selected="selected" {% endif %}>rooms</option>
+<form action="" method="get" name="sortForm" id="sortForm">
+  <label for="sort">Order by:</label>
+  <select name="sort" id="sort" >
+      <option value="name" {% if sort == "name" %} selected="selected" {% endif %}>name</option>
+      <option value="total_area" {% if sort == "total_area" %} selected="selected" {% endif %}>total area</option>
+      <option value="price" {% if sort == "price" %} selected="selected" {% endif %}>price</option>
+      <option value="rooms" {% if sort == "rooms" %} selected="selected" {% endif %}>rooms</option>
   </select>
 </form>
 
