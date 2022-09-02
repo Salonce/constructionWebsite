@@ -1,7 +1,36 @@
-$(document).on("change", "#sort", function (target) {
-  //let a = $("#order").val()
-  document.getElementById("sortForm").submit()
+var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        }
+    }
+    return false;
+};
+
+$(document).ready(function(){
+    var sortparam = getUrlParameter('sort');
+        if (sortparam != 'name' && sortparam != 'total_area' && sortparam != 'price' && sortparam != 'rooms'){
+            sortparam = 'name'
+        }
+        $("#sort").val(sortparam).change();
+    console.log("whaaa");
+
+    // (GET FORM) SUBMIT SORT CHANGE
+    $(document).on("change", "#sort", function (target) {
+        document.getElementById("sortForm").submit();
+    });
 });
+
+
+
+
 
 
 
@@ -21,6 +50,7 @@ function getCookie(name) {
     return cookieValue;
 }
 var csrftoken = getCookie('csrftoken');
+
 
 $(document).ready(function(){
     /* loca = console.log(top.location.pathname) */
@@ -64,85 +94,3 @@ $(document).ready(function(){
 
 
 
-//get order value into a variable??
-/*
-$(document).on("change", "#order", function (target) {
-  let order_value = $("#order").val()
-*/
-
-  //$("#helper").text(order_value)
-/*
-  $.ajax({
-         url: '',
-         headers: {
-            //'X-Requested-With': 'XMLHttpRequest',
-            'Content-Type': 'application/json'
-         },
-         type: 'get',
-         data: {
-            someText: order_value
-         },
-         success: function(response) {
-            //$(".btn").text(response.bbb)
-            $("#helper").text("<div>dsadsa</div><div>dsacxvzxcvx</div>")
-            //$("#helper").text(response[0].fields.house_plan)
-         },
-         error: function(response) {
-            //alert("Something didn't work out!!");
-            //$(".btn").text("error")
-         }
-      });
-});
-
-*/
-/*
-$(document).ready(function(){
-   $(".btn").click(function(){
-      $.ajax({
-         url: 'loadInfo/',
-         headers: {
-            //'X-Requested-With': 'XMLHttpRequest',
-            'Content-Type': 'application/json'
-         },
-         type: 'get',
-         data: {
-            someText: 'somtaaaaaaaaaaaaaaaaaaaaaaaaa'
-         },
-         success: function(response) {
-            //$(".btn").text(response.seconds)
-            $(".btn").text(response.tree)
-            console.log(response)
-         },
-         error: function(response) {
-            alert("Something didn't work out!!");
-            $(".btn").text("error")
-         }
-      });
-   });
-});
-*/
-
-
-/*
-var tag = document.createElement("p");
-var text = document.createTextNode("Tutorix is the best e-learning platform");
-tag.appendChild(text);
-var element = document.getElementById("new");
-element.appendChild(tag);
-*/
-
-
-
-
-/*
-document.getElementById("orderForm").onchange = {
-   orderSend(){ document.getElementById("orderForm").submit();
-    document.getElementById("test").innerHTML;}
-
-function orderSend(){
-   window.alert("dsadx");
-   document.getElementById("test").innerHTML;
-}
-
-$(document).on("change", "#order", function (target) {
-*/

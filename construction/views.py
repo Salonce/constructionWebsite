@@ -4,11 +4,16 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import Group
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
-from django.template import loader
 
 from .models import HousePlan, UserFavourite, UserSettings
 from .forms import SnippetForm, UserCreatorForm, UserSettingsForm
 from .decorators import authGoHome, onlyAuthPermitted, allowOnlySpecificRoles
+
+
+
+
+def home(request):
+  return render(request, 'home.html', context={})
 
 
 @onlyAuthPermitted
@@ -42,26 +47,6 @@ def userSettings(request):
   return render(request, 'userSettings.html', context={'form': form})
 
 
-def home(request):
-  if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-    some_text = request.GET.get('someText')
-    #print()
-    #print(some_text)
-    #print()
-  return render(request, 'home.html', context={})
-
-
-def loadInfo(request):
-  if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-    print("      ")
-    print("dsadsa")
-    print("      ")
-    data = {'tree': 'tree', 'grass': 'grass', 'house': 'house'}
-    return JsonResponse(data)
-  else:
-    return render(request, 'home.html', context={})
-
-
 def housePlan(request, id):
   housePlan = HousePlan.objects.get(id=id)
   return render(request, 'housePlan.html', context={'housePlan': housePlan})
@@ -74,7 +59,6 @@ def contact(request):
       name = form.cleaned_data['name']
       print(name)
       form.save()
-
   form = SnippetForm()
   return render(request, 'form.html', context={'form': form})
 
@@ -82,26 +66,25 @@ def contact(request):
 @authGoHome
 def register(request):
   form = UserCreatorForm()
+
+  ### (POST)
   if request.method == 'POST':
     form = UserCreatorForm(request.POST)
     if form.is_valid():
       user = form.save()
-      username = form.cleaned_data.get('username')
       group = Group.objects.get(name='customer')
       user.groups.add(group)
       return redirect('loginPage')
     else:
       return render(request, 'register.html', context={'form': form})
 
-  template = loader.get_template('register.html')
-  context = {
-    'form': form
-  }
-  return HttpResponse(template.render(context, request))
+  ### (GET)
+  return render(request, 'register.html', context={'form': form})
 
 
 @authGoHome
 def loginPage(request):
+    ### (POST)
     if request.method == 'POST':
       username = request.POST.get('username')
       password = request.POST.get('password')
@@ -111,10 +94,8 @@ def loginPage(request):
         login(request, user)
         return redirect('home')
 
-    template = loader.get_template('login.html')
-    context = {
-    }
-    return HttpResponse(template.render(context, request))
+    ### (GET)
+    return render(request, 'login.html', context={})
 
 
 def logoutPage(request):
@@ -123,8 +104,8 @@ def logoutPage(request):
 
 
 def housePlanBrowser(request):
-  #### add/delete a favourite by clicking on fav button
-  if request.headers.get('X-Requested-With') == 'XMLHttpRequest' and request.method == 'POST':
+  #### (AJAX) add/delete a favourite by clicking on fav button
+  if request.method == 'POST' and request.headers.get('X-Requested-With') == 'XMLHttpRequest':
     received_json = json.loads(request.body)
     house_plan_id = received_json['housePlanID']
     picked_house_plan = HousePlan.objects.all().get(id=house_plan_id)
@@ -140,51 +121,51 @@ def housePlanBrowser(request):
     context={'state': state}
     return JsonResponse(context)
 
+  #### (GET) save IDs of user's favourites in a list
   if request.method == 'GET':
-    #### save IDs of user's favourites in a list
     userFavs = UserFavourite.objects.all().filter(user=request.user)
-    fav_plans_ids = userFavs.values('house_plan')
-    vals = []
-    for i in fav_plans_ids:
-      vals.append(i['house_plan'])
-    ####
+    favourites = []
+    favourites_ids = userFavs.values('house_plan')
+    for i in favourites_ids:
+      favourites.append(i['house_plan'])
+
+    #### SET SORTING
     sort = "name"
     if "sort" in request.GET:
-      sort = request.GET['sort']
+      sorty = request.GET['sort']
+      if (sorty == 'name' or sorty == 'total_area' or sorty == 'price' or sorty == 'rooms'):
+        sort = request.GET['sort']
     house_plans = HousePlan.objects.all().order_by(sort)
-    return render(request, 'housePlanBrowser.html', context={'fav_plans_ids': vals, 'house_plans': house_plans, 'sort': sort})
+    return render(request, 'housePlanBrowser.html', context={'house_plans': house_plans, 'favourites': favourites, 'sort': sort})
 
 
 @onlyAuthPermitted
 @allowOnlySpecificRoles(allowed_roles=['customer'])
 def userFavourites(request):
 
-  #### add/delete a favourite by clicking on fav button
+  #### (AJAX) add/delete a favourite by clicking on fav button
   if request.headers.get('X-Requested-With') == 'XMLHttpRequest' and request.method == 'POST':
-    print("i am inside ajax post request, success")
-    print(request.body)
     state = None
     received_json = json.loads(request.body)
     house_plan_id = received_json['housePlanID']
-    print("house_plan_id:", house_plan_id)
     picked_house_plan = HousePlan.objects.all().get(id=house_plan_id)
     result_record = UserFavourite.objects.all().filter(user=request.user, house_plan=picked_house_plan)
     if result_record:
       result_record.delete()
       state = "deleted"
-      print("deleted object")
     else:
       new_record = UserFavourite(user=request.user, house_plan=picked_house_plan)
       new_record.save()
       state = "added"
-      print("added object")
-    print("result_record:", result_record)
     context={'state': state}
     return JsonResponse(context)
 
+  #### (GET) SET SORTING
   sort = "name"
   if "sort" in request.GET:
-    sort = request.GET['sort']
+    sorty = request.GET['sort']
+    if (sorty == 'name' or sorty == 'total_area' or sorty == 'price' or sorty == 'rooms'):
+      sort = request.GET['sort']
   user_favourites = UserFavourite.objects.filter(user=request.user).order_by("house_plan__" + sort)
   return render(request, 'userFavourites.html', context={'user_favourites': user_favourites, 'sort': sort})
 

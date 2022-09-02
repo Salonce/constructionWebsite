@@ -10,9 +10,6 @@ urlpatterns = [
   path('register/', views.register, name='register'),
   path('login/', views.loginPage, name='loginPage'),
   path('logout/', views.logoutPage, name='logoutPage'),
-  path('settings/', views.userSettings, name='userSettings'),
-
-  path('loadInfo/', views.loadInfo, name='loadInfo')
-  #path('housePlanBrowser/<int:id>/media/<int:id>', views.housePlan, name='housePlan'),
+  path('settings/', views.userSettings, name='userSettings')
 ]
 
