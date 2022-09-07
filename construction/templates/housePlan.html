@@ -5,7 +5,7 @@
 {% block body %}
 
 <div id="flexWindow">
-<br><br><img id="house-photo" src="{{housePlan.picture.url}}" alt="house">
+<br><img id="house-photo" src="{{housePlan.picture.url}}" alt="house">
 <h1>{{ housePlan.name }}</h1>
 
 <table id="houseTable">
@@ -21,8 +21,6 @@
 <td>{{ housePlan.rooms }}</td>
 </tr>
 </table>
-<br>
-<br>
 <table id="houseTable">
 <tr>
 <th>floors</td>
@@ -38,11 +36,8 @@
 </table>
 
 <br>
-<br>
-<br>
 <div id="descriptionTitle">Description</div>
 <div id="description">{{ housePlan.description }}</div>
-<button id="addToFavs">asd</button>
 </div>
 
 {% endblock %}
