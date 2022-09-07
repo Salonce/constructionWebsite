@@ -38,7 +38,7 @@ class UserSettings(models.Model):
   address_one = models.CharField(max_length=255)
   address_two = models.CharField(max_length=255)
   contact_person_name = models.CharField(max_length=255)
-  telephone_number = PhoneNumberField(null=True, blank=True, unique=True)
+  telephone_number = PhoneNumberField(null=True, blank=True, unique=False)
   user = models.OneToOneField(User, on_delete=models.CASCADE)
 
 

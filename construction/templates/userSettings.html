@@ -8,19 +8,23 @@
     <form method="post">
     {% csrf_token %}
     {{ form.address_one.label }}
-    {{ form.address_one }}
-    <br><br>
+    <input type="text" class="form-control" id="{{form.address_one.id_for_label}}" value="{{form.address_one.value}}" name="{{form.address_one.html_name}}">
+    <br>
     {{ form.address_two.label }}
     <!--{{ form.address_two.value }}-->
-    {{ form.address_two }}
-    <br><br>
+    <input type="text" class="form-control" id="{{form.address_two.id_for_label}}" value="{{form.address_two.value}}" name="{{form.address_two.html_name}}">
+    <br>
     {{ form.contact_person_name.label }}
-    {{ form.contact_person_name }}
-    <br><br>
+    <input type="text" class="form-control" id="{{form.contact_person_name.id_for_label}}" value="{{form.contact_person_name.value}}" name="{{form.contact_person_name.html_name}}">
+    <br>
     {{ form.telephone_number.label }}
-    {{ form.telephone_number }}
-    <button type="submit">submit</button>
+    <input type="text" class="form-control" id="{{form.telephone_number.id_for_label}}" value="{{form.telephone_number.value}}" name="{{form.telephone_number.html_name}}">
+    <br>
+    <button class="btn btn-primary" type="submit">Submit</button>
     </form>
 </div>
 
 {% endblock %}
+
+
+

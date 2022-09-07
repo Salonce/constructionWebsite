@@ -4,18 +4,17 @@
 
 
 <div id="flexWindow">
-<h1>House plans</h1>
 </div>
 
 {% include "sorter.html" %}
 
 <div id="housePlansArray">
     {% for house in house_plans %}
-    <div class="oneHouseBlock">
-       <a href="{{house.id}}" class="housePlansBlock">
+    <div class="oneHouseBlockWrapper">
+       <a href="{{house.id}}" class="oneHouseBlock">
             <!--<img src="/images/default.jpg" class="image-in-browser"></img> -->
-            <div id="houseName" >{{ house.name }}</div>
-            <table class="plan-browser-info-table">
+            <div id="houseName" >{{ house.name }}</div><br>
+            <table class="house-info">
                 <tr>
                     <td>{{ house.total_area }}m2</td>
                     <td>{{ house.price }}$</td>
@@ -27,9 +26,9 @@
             </table>
         </a>
             {% if house.id in favourites %}
-            <a class="fav fav-activated" id="{{house.id}}">fav</a>
+            <a class="fav fav-activated" id="{{house.id}}">Fav</a>
             {% else %}
-            <a class="fav" id="{{house.id}}">fav</a>
+            <a class="fav" id="{{house.id}}">Fav</a>
             {% endif %}
 
         <div id="hpids">
