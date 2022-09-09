@@ -36,8 +36,9 @@
     margin-top: 5px;
     margin-left: auto;
     margin-right: auto;
-    width: 250px;
-    height: 250px;
+    width: 180px;
+    height: 130px;
+    object-fit:scale-down;
 }
 
 .oneHouseBlock #houseName{
@@ -112,28 +113,26 @@ a.fav-activated{
     color:rgb(255, 255, 255);
 }
 
-.pickForm #min-rooms{
+.pickForm input{
     width: 50px;
 }
 
-.pickForm #max-rooms{
-    width: 50px;
+.pickForm input[type=submit]{
+    color: rgb(0, 0, 0);
+    width: 60px;
+    background-color: rgb(166, 212, 252);
+    border-color:rgb(188, 180, 189); 
+    border-width: 0px;
+    border-radius: 8px;
+    border-style: solid;
 }
 
-.pickForm #min-total-area{
-    width: 50px;
+.pickForm input[type=submit]:hover{
+    background-color: rgb(201, 223, 241);
 }
 
-.pickForm #max-total-area{
-    width: 50px;
-}
-
-.pickForm #min-price{
-    width: 50px;
-}
-
-.pickForm #max-price{
-    width: 50px;
+.pickForm input[type=submit]:active{
+    background-color: rgb(255, 255, 255);
 }
 
 .main{

@@ -6,15 +6,23 @@
 
     <div class="leftnav">
         <form class="pickForm" action="">
-            <div id="rooms-lab">rooms</div>
-            <input type="number" id="min-rooms" name="min-rooms" placeholder="min">
-            <input type="number" id="max-rooms" name="max-rooms" placeholder="max">
-            <div id="rooms-lab">total area</div>
+            <div>total area</div>
             <input type="number" id="min-total-area" name="min-total-area" placeholder="min">
             <input type="number" id="max-total-area" name="max-total-area" placeholder="max">
-            <div id="rooms-lab">price</div>
+            <br>
+            <div>floors</div>
+            <input type="number" id="min-floors" name="min-floors" placeholder="min">
+            <input type="number" id="max-floors" name="max-floors" placeholder="max">
+            <br>
+            <div>rooms</div>
+            <input type="number" id="min-rooms" name="min-rooms" placeholder="min">
+            <input type="number" id="max-rooms" name="max-rooms" placeholder="max">
+            <br>
+            <div>price</div>
             <input type="text" id="min-price" name="min-price" placeholder="min">
             <input type="text" id="max-price" name="max-price" placeholder="max">
+            <br><br>
+            <input type="submit" value="Submit">
         </form>
     </div>
 
@@ -28,7 +36,7 @@
             {% for house in house_plans %}
             <div class="oneHouseBlockWrapper">
             <a href="{{house.id}}" class="oneHouseBlock">
-                    <!--<img src="/images/default.jpg" class="image-in-browser"></img> -->
+                    <img src="/images/default.jpg" class="image-in-browser"></img>
                     <div id="houseName" >{{ house.name }}</div><br>
                     <table class="house-info">
                         <tr>
