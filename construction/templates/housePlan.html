@@ -6,9 +6,9 @@
 
 <div id="flexWindow">
 <br><img id="house-photo" src="{{housePlan.picture.url}}" alt="house">
-<h1>{{ housePlan.name }}</h1>
-
+<div id="houseName">{{ housePlan.name }}</div>
 <table id="houseTable">
+
 <tr>
 <th>total area</td>
 <th>price</td>
@@ -20,8 +20,10 @@
 <td>{{ housePlan.price }}$</td>
 <td>{{ housePlan.rooms }}</td>
 </tr>
+
 </table>
 <table id="houseTable">
+
 <tr>
 <th>floors</td>
 <th>additions</td>

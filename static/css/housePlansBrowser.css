@@ -90,17 +90,21 @@ a.fav-activated{
     background-color: rgb(114, 190, 104);
 }
 
-/*
-
-#housePlansArray #oneHouseBlock .house-item{
-    margin: 1px;
-    font-size: 20px;
-    color: rgb(0, 88, 47);
+.containerNavMain{
+    display: table;
+    width: 100%;
 }
 
-#nameTitle{
-    margin: 3px;
-    font-size: 24px;
-    color: rgb(0, 88, 47);
+.leftnav{
+    position: sticky;
+    display: table-cell;
+    background-color: rgb(160, 89, 111);
+    width: 200px;
+    height: 800px;
 }
-*/
+
+.main{
+    display: table-cell;
+    background-color: aliceblue;
+    height: 100%;
+}
