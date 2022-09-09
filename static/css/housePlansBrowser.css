@@ -96,11 +96,44 @@ a.fav-activated{
 }
 
 .leftnav{
+    color: white;
     position: sticky;
     display: table-cell;
-    background-color: rgb(160, 89, 111);
-    width: 200px;
+    background-color: rgb(97, 88, 150);
+    width: 150px;
     height: 800px;
+}
+
+.pickForm{
+    box-sizing: border-box;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 12px;
+    color:rgb(255, 255, 255);
+}
+
+.pickForm #min-rooms{
+    width: 50px;
+}
+
+.pickForm #max-rooms{
+    width: 50px;
+}
+
+.pickForm #min-total-area{
+    width: 50px;
+}
+
+.pickForm #max-total-area{
+    width: 50px;
+}
+
+.pickForm #min-price{
+    width: 50px;
+}
+
+.pickForm #max-price{
+    width: 50px;
 }
 
 .main{

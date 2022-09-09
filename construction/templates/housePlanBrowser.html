@@ -3,8 +3,19 @@
 {% block body %}
 
 <div class="containerNavMain">
+
     <div class="leftnav">
-        
+        <form class="pickForm" action="">
+            <div id="rooms-lab">rooms</div>
+            <input type="number" id="min-rooms" name="min-rooms" placeholder="min">
+            <input type="number" id="max-rooms" name="max-rooms" placeholder="max">
+            <div id="rooms-lab">total area</div>
+            <input type="number" id="min-total-area" name="min-total-area" placeholder="min">
+            <input type="number" id="max-total-area" name="max-total-area" placeholder="max">
+            <div id="rooms-lab">price</div>
+            <input type="text" id="min-price" name="min-price" placeholder="min">
+            <input type="text" id="max-price" name="max-price" placeholder="max">
+        </form>
     </div>
 
     <div class="main">
